@@ -1,0 +1,615 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animal Telepathy · Bridge of Whispers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── GLOBAL RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:#FDFAF5;color:#2C2317;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;outline:none}
+ul{list-style:none}
+
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;height:72px;
+  background:rgba(253,250,245,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #EDE4D6;
+  box-shadow:0 2px 20px rgba(44,35,23,0.08);
+}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{height:44px;width:auto}
+.nav-logo span{font-family:'Playfair Display',serif;font-size:17px;color:#2C2317;font-weight:500}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-links a{
+  padding:8px 16px;font-size:13px;font-weight:500;letter-spacing:.3px;
+  color:#6B5744;border-radius:6px;transition:background .2s,color .2s;
+}
+.nav-links a:hover{background:#F0EBE2;color:#2C2317}
+.nav-cta{
+  padding:10px 24px !important;
+  background:#5C7A5C !important;color:#fff !important;
+  border-radius:50px !important;font-weight:600 !important;
+  transition:background .2s,transform .2s,box-shadow .2s !important;
+}
+.nav-cta:hover{background:#4A6A4A !important;transform:translateY(-1px) !important;box-shadow:0 6px 20px rgba(92,122,92,.35) !important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:#2C2317;border-radius:2px;transition:.3s}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 30px;font-size:14px;font-weight:600;
+  border-radius:50px;border:2px solid transparent;
+  transition:all .25s;cursor:pointer;letter-spacing:.2px;
+}
+.btn-primary{background:#5C7A5C;color:#fff;border-color:#5C7A5C}
+.btn-primary:hover{background:#4A6A4A;border-color:#4A6A4A;transform:translateY(-2px);box-shadow:0 8px 24px rgba(92,122,92,.35)}
+.btn-secondary{background:transparent;color:#5C7A5C;border-color:#5C7A5C}
+.btn-secondary:hover{background:#5C7A5C;color:#fff;transform:translateY(-2px)}
+
+/* Hero: starts below fixed header, image fully visible, no crop, no stretch on scroll */
+.page-hero{
+  margin-top:72px; /* entire hero sits below header so image is never hidden */
+  min-height:42vh;padding-top:32px;padding-bottom:48px;padding-left:24px;padding-right:24px;
+  background-color:#E8E4DC; /* soft fill for letterboxing if any */
+  background-image:url('assets/imageanimaltelepathyheader.png');
+  background-size:contain;background-position:center center;background-repeat:no-repeat;
+  background-attachment:scroll; /* prevents stretch/parallax on scroll */
+  position:relative;
+  display:flex;align-items:flex-end;justify-content:center;
+  overflow:hidden;
+}
+.page-hero::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(44,35,23,.7) 0%, rgba(44,35,23,.15) 50%, transparent 100%);
+  pointer-events:none;
+}
+.page-hero-inner{
+  position:relative;z-index:2;
+  max-width:900px;width:100%;
+  text-align:center;
+}
+.page-hero h1{
+  font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,48px);
+  font-weight:400;color:#fff;margin-bottom:12px;
+  text-shadow:0 2px 20px rgba(0,0,0,.25);
+}
+.page-hero-desc{
+  font-size:17px;line-height:1.6;color:rgba(255,255,255,.92);
+  max-width:620px;margin:0 auto 24px;
+  text-shadow:0 1px 12px rgba(0,0,0,.2);
+}
+.page-hero .btn{margin:4px 6px}
+.page-hero .btn-secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.8)}
+.page-hero .btn-secondary:hover{background:rgba(255,255,255,.15);color:#fff;border-color:#fff}
+.page-hero .btn-primary{background:#fff;color:#5C7A5C;border-color:#fff}
+.page-hero .btn-primary:hover{background:rgba(255,255,255,.92);color:#4A6A4A;border-color:#fff}
+
+/* Main content: single column, clear sections */
+.service-content{background:#FDFAF5;padding:0}
+.service-wrap{max-width:900px;margin:0 auto;padding:0 24px}
+.content-block{
+  padding:64px 0;
+  border-bottom:1px solid #EDE4D6;
+}
+.content-block:last-of-type{border-bottom:none}
+.content-block h2{
+  font-family:'Playfair Display',serif;font-size:clamp(26px,2.8vw,34px);
+  font-weight:500;color:#2C2317;margin-bottom:24px;
+}
+.content-block p{
+  font-size:16px;line-height:1.85;color:#6B5744;margin-bottom:16px;
+}
+.content-block p:last-child{margin-bottom:0}
+.content-block ul{margin:20px 0 0;padding:0;list-style:none}
+.content-block ul li{
+  font-size:16px;line-height:1.8;color:#6B5744;
+  padding:10px 0 10px 28px;position:relative;
+  border-bottom:1px solid #EDE4D6;
+}
+.content-block ul li:last-child{border-bottom:none}
+.content-block ul li::before{
+  content:'✓';position:absolute;left:0;
+  color:#5C7A5C;font-weight:700;font-size:16px;
+}
+
+/* Two options: side-by-side on large screens */
+.type-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.type-card{
+  background:#fff;border-radius:20px;padding:28px 24px;
+  border:1px solid #EDE4D6;
+  transition:box-shadow .25s;
+}
+.type-card:hover{box-shadow:0 12px 40px rgba(44,35,23,.08)}
+.type-card h3{
+  font-family:'Playfair Display',serif;font-size:22px;
+  font-weight:500;color:#2C2317;margin-bottom:6px;
+}
+.type-card .type-badge{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.2px;
+  text-transform:uppercase;color:#5C7A5C;margin-bottom:10px;
+}
+.type-card .type-price{
+  font-family:'Playfair Display',serif;font-size:20px;
+  font-weight:500;color:#5C7A5C;margin-bottom:14px;
+}
+.type-card .type-price small{font-size:13px;font-weight:400;color:#9B8A7A;font-family:'Inter',sans-serif}
+.type-card p{font-size:15px;line-height:1.75;color:#6B5744;margin-bottom:16px}
+.type-card ul{margin:0;padding:0;list-style:none}
+.type-card ul li{
+  font-size:14px;line-height:1.7;color:#6B5744;
+  padding:8px 0 8px 22px;position:relative;
+  border-bottom:1px solid #F5EFE6;
+}
+.type-card ul li:last-child{border-bottom:none}
+.type-card ul li::before{
+  content:'✓';position:absolute;left:0;color:#5C7A5C;font-weight:700;font-size:14px;
+}
+
+.cta-box{
+  background:linear-gradient(135deg, #3D5C40 0%, #5C7A5C 100%);
+  border-radius:24px;padding:48px 40px;text-align:center;margin:64px 0 56px;
+}
+.cta-box h3{
+  font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,32px);
+  font-weight:400;color:#fff;margin-bottom:12px;
+}
+.cta-box p{font-size:16px;color:rgba(255,255,255,.85);margin-bottom:24px}
+.cta-box .btn-primary{background:#fff;color:#5C7A5C;border-color:#fff}
+.cta-box .btn-primary:hover{background:rgba(255,255,255,.9)}
+
+footer{background:#2C2317;padding:48px 60px;text-align:center}
+footer p{font-size:12px;color:rgba(255,255,255,.3)}
+
+@media(max-width:900px){
+  .nav{padding:0 24px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .page-hero{min-height:38vh;padding:24px 20px 36px}
+  .type-cards{grid-template-columns:1fr}
+  .content-block{padding:48px 0}
+  .service-wrap{padding:0 20px}
+  footer{padding:36px 24px}
+}
+.nav-links.mobile-open{
+  display:flex;flex-direction:column;position:fixed;
+  top:72px;left:0;right:0;bottom:0;
+  background:rgba(253,250,245,0.97);backdrop-filter:blur(16px);
+  align-items:center;justify-content:center;gap:28px;z-index:999;
+}
+.nav-links.mobile-open a{font-size:20px;padding:10px 20px}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/image12.png" alt="Bridge of Whispers logo">
+    <span>Bridge of Whispers</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#sessions">All Sessions</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="hamburger" id="menuBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="page-hero" aria-label="Animal Telepathy">
+  <div class="page-hero-inner">
+    <h1>Animal Telepathy</h1>
+    <p class="page-hero-desc">
+      Hear what your animal companions are thinking and feeling. Choose the format that suits you best — a detailed written report (Offline) or a live conversation (Online).
+    </p>
+    <a href="index.html#sessions" class="btn btn-secondary">← Back to All Offerings</a>
+    <a href="index.html" class="btn btn-primary">Book This Session</a>
+  </div>
+</section>
+
+<section class="service-content">
+  <div class="service-wrap">
+    <div class="content-block">
+      <h2>What Is Animal Telepathy?</h2>
+      <p>Animals don't just observe the world — they experience it with a profound wisdom that often eludes the human mind. Every behaviour, every gaze, every nudge carries a message waiting to be heard.</p>
+      <p><strong>Telepathic communication</strong> is the art of tuning into your animal's thoughts, emotions and physical sensations. Through a meditative state, I connect with their energy and translate what they're experiencing into words — with honesty, clarity and love. This practice works across any distance; whether your companion is beside you or has crossed the Rainbow Bridge, the connection remains strong.</p>
+      <p>We offer Animal Telepathy in two formats so you can choose what works best for you and your companion.</p>
+    </div>
+
+    <div class="content-block">
+      <h2>Two Ways to Connect</h2>
+      <div class="type-cards">
+        <div class="type-card">
+          <span class="type-badge">Offline · Written Session</span>
+          <h3>Animal Telepathy — Offline</h3>
+          <div class="type-price">₹1,500 <small>per pet</small></div>
+          <p>A detailed written conversation delivered via email or WhatsApp within 24–48 hours. Perfect when you prefer to sit with the insights in your own time.</p>
+          <ul>
+            <li>6–8 questions per session (1 question = 1 question only)</li>
+            <li>Delivered in 24–48 hours via email or WhatsApp</li>
+            <li>Detailed written report with all insights</li>
+            <li>Follow-up available: ₹800 for approx 8 additional questions</li>
+          </ul>
+        </div>
+        <div class="type-card">
+          <span class="type-badge">Online · Live Session</span>
+          <h3>Animal Telepathy — Online</h3>
+          <div class="type-price">₹3,500 <small>for 2–3 pets</small></div>
+          <p>Real-time conversation via phone or Zoom with unlimited questions. Ideal when you want immediate clarity and the chance to ask follow-ups on the spot.</p>
+          <ul>
+            <li>30-minute live session with Prasha Singh</li>
+            <li>Unlimited questions during the call</li>
+            <li>Immediate insights and real-time clarity</li>
+            <li>No follow-up session — all questions answered live</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h3>Ready to Begin?</h3>
+      <p>Choose Offline or Online when you book. We'll confirm everything over WhatsApp.</p>
+      <a href="index.html" class="btn btn-primary">Book This Session</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 The Bridge of Whispers · All rights reserved</p>
+</footer>
+
+<script>
+(function(){
+  var menuBtn = document.getElementById('menuBtn');
+  var navLinks = document.getElementById('navLinks');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('mobile-open');
+      document.body.style.overflow = open ? 'hidden' : '';
+      menuBtn.children[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)' : '';
+      menuBtn.children[1].style.opacity = open ? '0' : '1';
+      menuBtn.children[2].style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        navLinks.classList.remove('mobile-open');
+        document.body.style.overflow = '';
+        if (menuBtn.children[0]) menuBtn.children[0].style.transform = '';
+        if (menuBtn.children[1]) menuBtn.children[1].style.opacity = '1';
+        if (menuBtn.children[2]) menuBtn.children[2].style.transform = '';
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animal Telepathy · Bridge of Whispers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── GLOBAL RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:#FDFAF5;color:#2C2317;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;outline:none}
+ul{list-style:none}
+
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;height:72px;
+  background:rgba(253,250,245,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #EDE4D6;
+  box-shadow:0 2px 20px rgba(44,35,23,0.08);
+}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{height:44px;width:auto}
+.nav-logo span{font-family:'Playfair Display',serif;font-size:17px;color:#2C2317;font-weight:500}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-links a{
+  padding:8px 16px;font-size:13px;font-weight:500;letter-spacing:.3px;
+  color:#6B5744;border-radius:6px;transition:background .2s,color .2s;
+}
+.nav-links a:hover{background:#F0EBE2;color:#2C2317}
+.nav-cta{
+  padding:10px 24px !important;
+  background:#5C7A5C !important;color:#fff !important;
+  border-radius:50px !important;font-weight:600 !important;
+  transition:background .2s,transform .2s,box-shadow .2s !important;
+}
+.nav-cta:hover{background:#4A6A4A !important;transform:translateY(-1px) !important;box-shadow:0 6px 20px rgba(92,122,92,.35) !important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:#2C2317;border-radius:2px;transition:.3s}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 30px;font-size:14px;font-weight:600;
+  border-radius:50px;border:2px solid transparent;
+  transition:all .25s;cursor:pointer;letter-spacing:.2px;
+}
+.btn-primary{background:#5C7A5C;color:#fff;border-color:#5C7A5C}
+.btn-primary:hover{background:#4A6A4A;border-color:#4A6A4A;transform:translateY(-2px);box-shadow:0 8px 24px rgba(92,122,92,.35)}
+.btn-secondary{background:transparent;color:#5C7A5C;border-color:#5C7A5C}
+.btn-secondary:hover{background:#5C7A5C;color:#fff;transform:translateY(-2px)}
+
+/* Hero: starts below fixed header, image fully visible, no crop, no stretch on scroll */
+/* ─── HERO PERFECT FIT ─── */
+.page-hero{
+  margin-top:72px;
+  position:relative;
+  height:520px; /* same nice height you liked */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:transparent; /* remove cream fill */
+}
+
+.page-hero img{
+  height:125%;
+  width:auto;
+  max-width:100%;
+  object-fit:contain;
+  display:block;
+  margin:0 auto;
+}
+
+.page-hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(44,35,23,.65) 0%,
+    rgba(44,35,23,.2) 50%,
+    transparent 100%
+  );
+  pointer-events:none;
+}
+
+.page-hero-inner{
+  position:absolute;
+  bottom:50px;
+  left:50%;
+  transform:translateX(-50%);
+  max-width:900px;
+  width:100%;
+  padding:0 24px;
+  text-align:center;
+  z-index:2;
+}
+
+
+.page-hero .btn{margin:4px 6px}
+.page-hero .btn-secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.8)}
+.page-hero .btn-secondary:hover{background:rgba(255,255,255,.15);color:#fff;border-color:#fff}
+.page-hero .btn-primary{background:#fff;color:#5C7A5C;border-color:#fff}
+.page-hero .btn-primary:hover{background:rgba(255,255,255,.92);color:#4A6A4A;border-color:#fff}
+
+/* Main content: single column, clear sections */
+.service-content{background:#FDFAF5;padding:0}
+.service-wrap{max-width:900px;margin:0 auto;padding:0 24px}
+.content-block{
+  padding:64px 0;
+  border-bottom:1px solid #EDE4D6;
+}
+.content-block:last-of-type{border-bottom:none}
+.content-block h2{
+  font-family:'Playfair Display',serif;font-size:clamp(26px,2.8vw,34px);
+  font-weight:500;color:#2C2317;margin-bottom:24px;
+}
+.content-block p{
+  font-size:16px;line-height:1.85;color:#6B5744;margin-bottom:16px;
+}
+.content-block p:last-child{margin-bottom:0}
+.content-block ul{margin:20px 0 0;padding:0;list-style:none}
+.content-block ul li{
+  font-size:16px;line-height:1.8;color:#6B5744;
+  padding:10px 0 10px 28px;position:relative;
+  border-bottom:1px solid #EDE4D6;
+}
+.content-block ul li:last-child{border-bottom:none}
+.content-block ul li::before{
+  content:'✓';position:absolute;left:0;
+  color:#5C7A5C;font-weight:700;font-size:16px;
+}
+
+/* Two options: side-by-side on large screens */
+.type-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.type-card{
+  background:#fff;border-radius:20px;padding:28px 24px;
+  border:1px solid #EDE4D6;
+  transition:box-shadow .25s;
+}
+.type-card:hover{box-shadow:0 12px 40px rgba(44,35,23,.08)}
+.type-card h3{
+  font-family:'Playfair Display',serif;font-size:22px;
+  font-weight:500;color:#2C2317;margin-bottom:6px;
+}
+.type-card .type-badge{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.2px;
+  text-transform:uppercase;color:#5C7A5C;margin-bottom:10px;
+}
+.type-card .type-price{
+  font-family:'Playfair Display',serif;font-size:20px;
+  font-weight:500;color:#5C7A5C;margin-bottom:14px;
+}
+.type-card .type-price small{font-size:13px;font-weight:400;color:#9B8A7A;font-family:'Inter',sans-serif}
+.type-card p{font-size:15px;line-height:1.75;color:#6B5744;margin-bottom:16px}
+.type-card ul{margin:0;padding:0;list-style:none}
+.type-card ul li{
+  font-size:14px;line-height:1.7;color:#6B5744;
+  padding:8px 0 8px 22px;position:relative;
+  border-bottom:1px solid #F5EFE6;
+}
+.type-card ul li:last-child{border-bottom:none}
+.type-card ul li::before{
+  content:'✓';position:absolute;left:0;color:#5C7A5C;font-weight:700;font-size:14px;
+}
+
+.cta-box{
+  background:linear-gradient(135deg, #3D5C40 0%, #5C7A5C 100%);
+  border-radius:24px;padding:48px 40px;text-align:center;margin:64px 0 56px;
+}
+.cta-box h3{
+  font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,32px);
+  font-weight:400;color:#fff;margin-bottom:12px;
+}
+.cta-box p{font-size:16px;color:rgba(255,255,255,.85);margin-bottom:24px}
+.cta-box .btn-primary{background:#fff;color:#5C7A5C;border-color:#fff}
+.cta-box .btn-primary:hover{background:rgba(255,255,255,.9)}
+
+footer{background:#2C2317;padding:48px 60px;text-align:center}
+footer p{font-size:12px;color:rgba(255,255,255,.3)}
+
+@media(max-width:900px){
+  .nav{padding:0 24px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .page-hero{min-height:38vh;padding:24px 20px 36px}
+  .type-cards{grid-template-columns:1fr}
+  .content-block{padding:48px 0}
+  .service-wrap{padding:0 20px}
+  footer{padding:36px 24px}
+}
+.nav-links.mobile-open{
+  display:flex;flex-direction:column;position:fixed;
+  top:72px;left:0;right:0;bottom:0;
+  background:rgba(253,250,245,0.97);backdrop-filter:blur(16px);
+  align-items:center;justify-content:center;gap:28px;z-index:999;
+}
+.nav-links.mobile-open a{font-size:20px;padding:10px 20px}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/image12.png" alt="Bridge of Whispers logo">
+    <span>Bridge of Whispers</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#sessions">All Sessions</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="hamburger" id="menuBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="page-hero" aria-label="Animal Telepathy">
+
+  <img src="assets/imageaurascanheader.png" 
+       alt="Animal Telepathy Header Image">
+
+  <!-- <div class="page-hero-inner">
+    <h1>Animal Telepathy</h1>
+    <p class="page-hero-desc">
+      Hear what your animal companions are thinking and feeling. Choose the format that suits you best — a detailed written report (Offline) or a live conversation (Online).
+    </p>
+    <a href="index.html#sessions" class="btn btn-secondary">← Back to All Offerings</a>
+    <a href="index.html" class="btn btn-primary">Book This Session</a>
+  </div> -->
+
+</section>
+
+<section class="service-content">
+  <div class="service-wrap">
+    <div class="content-block">
+      <h2>What Is Animal Telepathy?</h2>
+      <p>Animals don't just observe the world — they experience it with a profound wisdom that often eludes the human mind. Every behaviour, every gaze, every nudge carries a message waiting to be heard.</p>
+      <p><strong>Telepathic communication</strong> is the art of tuning into your animal's thoughts, emotions and physical sensations. Through a meditative state, I connect with their energy and translate what they're experiencing into words — with honesty, clarity and love. This practice works across any distance; whether your companion is beside you or has crossed the Rainbow Bridge, the connection remains strong.</p>
+      <p>We offer Animal Telepathy in two formats so you can choose what works best for you and your companion.</p>
+    </div>
+
+    <div class="content-block">
+      <h2>Two Ways to Connect</h2>
+      <div class="type-cards">
+        <div class="type-card">
+          <span class="type-badge">Offline · Written Session</span>
+          <h3>Animal Telepathy — Offline</h3>
+          <div class="type-price">₹1,500 <small>per pet</small></div>
+          <p>A detailed written conversation delivered via email or WhatsApp within 24–48 hours. Perfect when you prefer to sit with the insights in your own time.</p>
+          <ul>
+            <li>6–8 questions per session (1 question = 1 question only)</li>
+            <li>Delivered in 24–48 hours via email or WhatsApp</li>
+            <li>Detailed written report with all insights</li>
+            <li>Follow-up available: ₹800 for approx 8 additional questions</li>
+          </ul>
+        </div>
+        <div class="type-card">
+          <span class="type-badge">Online · Live Session</span>
+          <h3>Animal Telepathy — Online</h3>
+          <div class="type-price">₹3,500 <small>for 2–3 pets</small></div>
+          <p>Real-time conversation via phone or Zoom with unlimited questions. Ideal when you want immediate clarity and the chance to ask follow-ups on the spot.</p>
+          <ul>
+            <li>30-minute live session with Prasha Singh</li>
+            <li>Unlimited questions during the call</li>
+            <li>Immediate insights and real-time clarity</li>
+            <li>No follow-up session — all questions answered live</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h3>Ready to Begin?</h3>
+      <p>Choose Offline or Online when you book. We'll confirm everything over WhatsApp.</p>
+      <a href="index.html" class="btn btn-primary">Book This Session</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 The Bridge of Whispers · All rights reserved</p>
+</footer>
+
+<script>
+(function(){
+  var menuBtn = document.getElementById('menuBtn');
+  var navLinks = document.getElementById('navLinks');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('mobile-open');
+      document.body.style.overflow = open ? 'hidden' : '';
+      menuBtn.children[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)' : '';
+      menuBtn.children[1].style.opacity = open ? '0' : '1';
+      menuBtn.children[2].style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        navLinks.classList.remove('mobile-open');
+        document.body.style.overflow = '';
+        if (menuBtn.children[0]) menuBtn.children[0].style.transform = '';
+        if (menuBtn.children[1]) menuBtn.children[1].style.opacity = '1';
+        if (menuBtn.children[2]) menuBtn.children[2].style.transform = '';
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

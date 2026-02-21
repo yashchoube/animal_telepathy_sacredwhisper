@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridge of Whispers · Animal Telepathic Communication</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── GLOBAL RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:#FDFAF5;color:#2C2317;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;outline:none}
+ul{list-style:none}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(to right,#5C7A5C,#C97B6E);z-index:9999;transition:width .05s}
+
+/* ══════════════════════════════════════════
+ NAV
+══════════════════════════════════════════ */
+.nav{
+ position:fixed;top:0;left:0;right:0;z-index:1000;
+ display:flex;align-items:center;justify-content:space-between;
+ padding:0 60px;height:72px;
+ background:rgba(253,250,245,0.96);
+ backdrop-filter:blur(12px);
+ border-bottom:1px solid #EDE4D6;
+ transition:box-shadow .3s;
+}
+.nav.scrolled{box-shadow:0 2px 20px rgba(44,35,23,0.08)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{height:44px;width:auto}
+.nav-logo span{font-family:'Playfair Display',serif;font-size:17px;color:#2C2317;font-weight:500}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-links a{
+ padding:8px 16px;font-size:13px;font-weight:500;letter-spacing:.3px;
+ color:#6B5744;border-radius:6px;transition:background .2s,color .2s;
+}
+.nav-links a:hover{background:#F0EBE2;color:#2C2317}
+.nav-cta{
+ padding:10px 24px !important;
+ background:#5C7A5C !important;color:#fff !important;
+ border-radius:50px !important;font-weight:600 !important;
+ transition:background .2s,transform .2s,box-shadow .2s !important;
+}
+.nav-cta:hover{background:#4A6A4A !important;transform:translateY(-1px) !important;box-shadow:0 6px 20px rgba(92,122,92,.35) !important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:#2C2317;border-radius:2px;transition:.3s}
+
+/* ══════════════════════════════════════════
+ HERO
+══════════════════════════════════════════ */
+.hero{
+ min-height:100vh;padding-top:72px;
+ position:relative;
+ display:flex;align-items:center;justify-content:center;
+ background-image:url('assets/image5.png');
+ background-size:cover;background-position:center;background-repeat:no-repeat;
+ padding-left:60px;padding-right:60px;
+}
+.hero::before{
+ content:'';position:absolute;inset:0;
+ background:rgba(253,250,245,0.3);
+ z-index:1;
+}
+.hero-text{
+ position:relative;z-index:2;
+ max-width:1200px;width:100%;
+ padding:60px 0;
+ text-align:center;
+}
+.hero-label{
+ display:inline-flex;align-items:center;gap:10px;
+ font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+ color:#5C7A5C;margin-bottom:28px;
+}
+.hero-label::before,.hero-label::after{content:'';display:block;width:24px;height:1px;background:#8FA98F}
+.hero-h1{
+ font-family:'Playfair Display',serif;font-size:clamp(40px,4.5vw,64px);
+ font-weight:400;line-height:1.2;color:#2C2317;margin-bottom:24px;
+}
+.hero-h1 em{font-style:italic;color:#5C7A5C}
+.hero-desc{
+ font-size:17px;line-height:1.85;color:#2C2317;
+ max-width:680px;margin:0 auto 44px;
+ text-shadow:0 1px 3px rgba(253,250,245,0.8);
+}
+.hero-buttons{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}
+.hero-social{
+ display:flex;gap:24px;margin-top:52px;
+ padding-top:28px;border-top:1px solid rgba(44,35,23,0.15);
+ justify-content:center;
+}
+.social-stat strong{display:block;font-family:'Playfair Display',serif;font-size:26px;color:#2C2317}
+.social-stat span{font-size:12px;color:#6B5744;letter-spacing:.3px}
+
+/* ══════════════════════════════════════════
+ BUTTONS
+══════════════════════════════════════════ */
+.btn{
+ display:inline-flex;align-items:center;gap:8px;
+ padding:14px 30px;font-size:14px;font-weight:600;
+ border-radius:50px;border:2px solid transparent;
+ transition:all .25s;cursor:pointer;letter-spacing:.2px;
+}
+.btn-primary{background:#5C7A5C;color:#fff;border-color:#5C7A5C}
+.btn-primary:hover{background:#4A6A4A;border-color:#4A6A4A;transform:translateY(-2px);box-shadow:0 8px 24px rgba(92,122,92,.35)}
+.btn-secondary{background:transparent;color:#5C7A5C;border-color:#5C7A5C}
+.btn-secondary:hover{background:#5C7A5C;color:#fff;transform:translateY(-2px)}
+.btn-white{background:#fff;color:#5C7A5C;border-color:#fff}
+.btn-white:hover{background:transparent;color:#fff;border-color:rgba(255,255,255,.7);transform:translateY(-2px)}
+
+/* ══════════════════════════════════════════
+ SECTION SHELL
+══════════════════════════════════════════ */
+.section{padding:100px 60px}
+.wrap{max-width:1200px;margin:0 auto}
+
+.section-tag{
+ display:inline-flex;align-items:center;gap:8px;
+ font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+ margin-bottom:16px;
+}
+.section-tag::before{content:'';display:block;width:20px;height:2px;background:currentColor;border-radius:2px}
+.tag-green{color:#5C7A5C}
+.tag-blush{color:#C97B6E}
+.center-tag{justify-content:center}
+.center-tag::after{content:'';display:block;width:20px;height:2px;background:currentColor;border-radius:2px}
+
+.section-h{
+ font-family:'Playfair Display',serif;
+ font-size:clamp(30px,3.5vw,48px);
+ font-weight:400;line-height:1.25;color:#2C2317;margin-bottom:18px;
+}
+.section-p{font-size:16px;line-height:1.85;color:#6B5744;max-width:580px}
+.tc .section-p{margin:0 auto}
+.tc{text-align:center}
+
+/* ══════════════════════════════════════════
+ WHAT IS SECTION
+══════════════════════════════════════════ */
+.what-section{background:#fff;padding:100px 60px}
+.what-layout{
+ display:grid;grid-template-columns:1fr 1fr;gap:80px;
+ align-items:center;max-width:1200px;margin:0 auto;
+}
+.what-visual{position:relative}
+.what-img{
+ width:100%;aspect-ratio:4/5;object-fit:cover;
+ border-radius:32px;box-shadow:0 24px 64px rgba(44,35,23,.14);
+}
+.what-decor{
+ position:absolute;top:-16px;left:-16px;right:16px;bottom:16px;
+ border-radius:32px;border:2px solid #D4E4D4;z-index:-1;
+}
+.what-quote-card{
+ position:absolute;bottom:-24px;right:-24px;
+ background:#5C7A5C;color:#fff;border-radius:20px;
+ padding:24px 28px;max-width:260px;
+ box-shadow:0 16px 40px rgba(92,122,92,.4);
+}
+.what-quote-card p{
+ font-family:'Playfair Display',serif;font-size:15px;
+ font-style:italic;line-height:1.65;margin-bottom:12px;
+}
+.what-quote-card span{font-size:11px;opacity:.75;letter-spacing:.8px;text-transform:uppercase;font-weight:600}
+
+.what-text .section-tag{display:flex}
+.what-divider{width:40px;height:2px;background:#D4E4D4;margin:24px 0}
+.what-text p{font-size:15px;line-height:1.85;color:#6B5744;margin-bottom:20px}
+
+/* ══════════════════════════════════════════
+ WHY SECTION
+══════════════════════════════════════════ */
+.why-section{background:#F5EFE6;padding:100px 60px}
+.why-top{text-align:center;max-width:680px;margin:0 auto 64px}
+.cards-grid{
+ max-width:1200px;margin:0 auto;
+}
+.why-image{
+ width:100%;height:auto;display:block;
+ border-radius:24px;
+ box-shadow:0 24px 64px rgba(44,35,23,.14);
+}
+.card{
+ background:#FDFAF5;border-radius:20px;overflow:hidden;
+ border:1px solid #EDE4D6;
+ transition:transform .3s,box-shadow .3s;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(44,35,23,.1)}
+.card-img{height:200px;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .card-img img{transform:scale(1.06)}
+.card-body{padding:28px}
+.card-icon{
+ width:42px;height:42px;border-radius:12px;
+ display:flex;align-items:center;justify-content:center;font-size:19px;
+ margin-bottom:16px;
+}
+.ic-g{background:#EDF2ED}
+.ic-b{background:#F5E4E2}
+.ic-s{background:#F5EDDE}
+.card-num{float:right;font-family:'Playfair Display',serif;font-size:38px;font-weight:400;color:#EDE4D6;line-height:1;margin-top:-6px}
+.card h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;color:#2C2317;margin-bottom:10px}
+.card p{font-size:14px;line-height:1.8;color:#6B5744}
+
+/* ══════════════════════════════════════════
+ HOW IT WORKS
+══════════════════════════════════════════ */
+.how-section{background:#fff;padding:100px 60px}
+.how-top{text-align:center;max-width:620px;margin:0 auto 64px}
+.steps-grid{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:32px;
+ max-width:1200px;margin:0 auto;position:relative;
+}
+.steps-grid::before{
+ content:'';position:absolute;top:28px;left:calc(12.5% + 4px);right:calc(12.5% + 4px);
+ height:1px;background:#EDE4D6;
+}
+.step-card{text-align:center;position:relative}
+.step-num{
+ width:56px;height:56px;border-radius:50%;
+ background:#5C7A5C;border:3px solid #F5EFE6;
+ color:#fff;font-family:'Playfair Display',serif;font-size:22px;font-weight:500;
+ display:flex;align-items:center;justify-content:center;
+ margin:0 auto 24px;transition:transform .3s;
+}
+.step-card:hover .step-num{transform:scale(1.1)}
+.step-card h4{font-family:'Playfair Display',serif;font-size:18px;font-weight:500;color:#2C2317;margin-bottom:10px}
+.step-card p{font-size:13px;line-height:1.7;color:#6B5744}
+
+/* ══════════════════════════════════════════
+ SERVICES GRID - ALL 7 SERVICES
+══════════════════════════════════════════ */
+.sessions-section{background:#F5EFE6;padding:100px 60px}
+.sessions-top{text-align:center;max-width:680px;margin:0 auto 56px}
+
+.offerings-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+ max-width:1200px;margin:0 auto;
+}
+.offering-card{
+ background:#fff;border-radius:20px;overflow:hidden;
+ border:1px solid #EDE4D6;text-align:center;
+ transition:transform .3s,box-shadow .3s;position:relative;
+ display:flex;flex-direction:column;
+}
+.offering-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(44,35,23,.09)}
+
+/* .offering-img-wrap{
+ width:100%;height:200px;background:#F5EFE6;
+ display:flex;align-items:center;justify-content:center;
+ padding:16px;flex-shrink:0;
+}
+.offering-img-wrap img{
+ max-width:100%;max-height:100%;
+ width:auto;height:auto;
+ object-fit:contain;object-position:center;
+ border-radius:12px;
+} */
+
+
+
+
+.offering-img-wrap{
+ width:100%;
+ height:220px; /* slightly taller for better visual */
+ overflow:hidden;
+ flex-shrink:0;
+}
+
+.offering-img-wrap img{
+ width:100%;
+ height:100%;
+ object-fit:cover;   /* THIS makes image fill fully */
+ object-position:center;
+ display:block;
+}
+
+
+
+.offering-body{padding:24px 28px 32px;flex:1;display:flex;flex-direction:column;align-items:center}
+.offering-card h4{
+ font-family:'Playfair Display',serif;font-size:19px;
+ font-weight:500;color:#2C2317;margin-bottom:10px;
+}
+.offering-desc{font-size:13px;line-height:1.75;color:#6B5744;margin-bottom:16px}
+.offering-price{
+ font-family:'Playfair Display',serif;font-size:24px;
+ font-weight:500;color:#5C7A5C;margin-bottom:4px;
+}
+.offering-price small{font-size:12px;font-weight:400;color:#9B8A7A;font-family:'Inter',sans-serif}
+.offering-note{font-size:11px;color:#9B8A7A;margin-bottom:16px}
+.offering-card .btn-secondary{font-size:13px;padding:10px 24px;margin-top:auto}
+
+/* ══════════════════════════════════════════
+ ABOUT
+══════════════════════════════════════════ */
+.about-section{background:#fff;padding:100px 60px}
+.about-layout{
+ display:grid;grid-template-columns:1fr 1.1fr;gap:80px;
+ align-items:center;max-width:1200px;margin:0 auto;
+}
+.about-img-wrap{position:relative}
+.about-img-border{
+ position:absolute;
+ inset:-8px;
+ width:calc(100% + 16px);
+ height:calc(100% + 16px);
+ pointer-events:none;
+ z-index:0;
+}
+.about-border-rect{
+ fill:none;
+ stroke:url(#aboutBorderGradient);
+ stroke-width:4;
+ stroke-linecap:round;
+ stroke-dasharray:26 18;
+ animation:aboutBorderDash 3.5s linear infinite;
+ filter:drop-shadow(0 0 10px rgba(201,123,110,.65));
+ opacity:.9;
+ mix-blend-mode:screen;
+}
+.about-border-rect.glow{
+ stroke-width:8;
+ stroke-dasharray:18 26;
+ animation:aboutBorderDash 4.5s linear infinite reverse;
+ filter:blur(2px) drop-shadow(0 0 18px rgba(92,122,92,.55));
+ opacity:.35;
+}
+.about-img{
+ width:100%;aspect-ratio:3/4;object-fit:cover;
+ border-radius:32px;box-shadow:0 24px 64px rgba(44,35,23,.14);
+ position:relative;z-index:1;
+}
+.about-cert-card{
+ position:absolute;left:-22px;bottom:28px;
+ background:#FDFAF5;border:1px solid #EDE4D6;border-radius:18px;
+ padding:16px 20px;box-shadow:0 8px 32px rgba(44,35,23,.1);min-width:210px;
+ z-index:2;
+}
+.cert-pill{
+ display:inline-flex;align-items:center;gap:6px;
+ background:#5C7A5C;color:#fff;
+ font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+ padding:4px 12px;border-radius:50px;margin-bottom:10px;
+}
+.about-cert-card h4{font-size:13px;font-weight:600;color:#2C2317;margin-bottom:4px}
+.about-cert-card p{font-size:12px;color:#9B8A7A;line-height:1.5}
+
+.about-text .section-tag{display:flex}
+.about-text .section-h{margin-bottom:20px}
+.about-text p{font-size:16px;line-height:1.85;color:#6B5744;margin-bottom:18px}
+.blockquote{
+ margin:24px 0;padding:22px 26px;
+ border-left:3px solid #5C7A5C;background:#F5EFE6;border-radius:0 12px 12px 0;
+}
+.blockquote p{
+ font-family:'Playfair Display',serif;font-style:italic;font-size:18px;
+ color:#3D5C40;margin:0;line-height:1.65;
+}
+.cert-chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.cert-chip{
+ display:inline-flex;align-items:center;gap:8px;
+ background:#F5EFE6;border:1px solid #EDE4D6;border-radius:50px;
+ padding:8px 16px;font-size:12px;font-weight:600;color:#6B5744;
+}
+.about-buttons{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+
+/* ══════════════════════════════════════════
+ TESTIMONIALS
+══════════════════════════════════════════ */
+.testi-section{background:#F5EFE6;padding:100px 60px}
+.testi-top{text-align:center;max-width:580px;margin:0 auto 56px}
+.testi-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+ max-width:1200px;margin:0 auto;
+}
+.testi{
+ background:#fff;border-radius:20px;padding:32px;
+ border:1px solid #EDE4D6;transition:transform .3s,box-shadow .3s;
+}
+.testi:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(44,35,23,.09)}
+.stars{color:#B8923A;font-size:15px;letter-spacing:2px;margin-bottom:18px}
+.testi blockquote{
+ font-family:'Playfair Display',serif;font-style:italic;
+ font-size:16px;line-height:1.75;color:#2C2317;margin-bottom:22px;
+}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{
+ width:40px;height:40px;border-radius:50%;
+ background:#EDF2ED;display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.testi-name strong{display:block;font-size:14px;font-weight:600;color:#2C2317}
+.testi-name span{font-size:12px;color:#9B8A7A}
+
+/* ══════════════════════════════════════════
+ CTA BANNER
+══════════════════════════════════════════ */
+.cta-section{
+ background:linear-gradient(135deg,#3D5C40 0%,#5C7A5C 100%);
+ padding:90px 60px;text-align:center;
+}
+.cta-section h2{
+ font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,44px);
+ font-weight:400;color:#fff;margin-bottom:16px;max-width:620px;margin-left:auto;margin-right:auto;
+}
+.cta-section p{font-size:17px;color:rgba(255,255,255,.7);max-width:500px;margin:0 auto 36px;line-height:1.8}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ══════════════════════════════════════════
+ FOOTER
+══════════════════════════════════════════ */
+footer{background:#2C2317;padding:64px 60px 32px}
+.footer-wrap{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand img{height:44px;margin-bottom:16px;filter:brightness(1.4)}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.75;max-width:240px}
+.footer-col h5{
+ font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+ color:rgba(255,255,255,.35);margin-bottom:16px;
+}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.5);margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:#fff}
+.footer-divider{height:1px;background:rgba(255,255,255,.07);margin-bottom:28px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.3)}
+.disclaimer{font-size:11px;color:rgba(255,255,255,.22);max-width:600px;line-height:1.65;margin-top:6px}
+
+/* ══════════════════════════════════════════
+ MODAL
+══════════════════════════════════════════ */
+.overlay{
+ position:fixed;inset:0;z-index:10000;
+ background:rgba(44,35,23,.72);backdrop-filter:blur(10px);
+ display:flex;align-items:center;justify-content:center;padding:24px;
+ opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{
+ background:#FDFAF5;border-radius:24px;width:100%;max-width:520px;max-height:92vh;
+ overflow-y:auto;box-shadow:0 40px 80px rgba(44,35,23,.3);
+ transform:translateY(20px) scale(.97);transition:transform .35s;position:relative;
+}
+.overlay.open .modal{transform:none}
+.modal-stripe{height:4px;background:linear-gradient(to right,#5C7A5C,#C97B6E);border-radius:24px 24px 0 0}
+.modal-inner{padding:36px 40px 44px}
+.modal-close{
+ position:absolute;top:16px;right:16px;width:36px;height:36px;
+ border-radius:50%;background:#F0EBE2;color:#6B5744;font-size:17px;
+ display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;
+ transition:background .2s,color .2s,transform .2s;
+}
+.modal-close:hover{background:#C97B6E;color:#fff;transform:rotate(90deg)}
+.modal h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:500;color:#2C2317;margin-bottom:6px}
+.modal .sub{font-size:13px;color:#9B8A7A;margin-bottom:28px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#6B5744;margin-bottom:6px}
+.fg input,.fg select,.fg textarea{
+ width:100%;padding:11px 15px;
+ font-family:'Inter',sans-serif;font-size:14px;color:#2C2317;
+ background:#fff;border:1.5px solid #EDE4D6;border-radius:10px;
+ outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+ border-color:#5C7A5C;box-shadow:0 0 0 3px rgba(92,122,92,.12);
+}
+.fg textarea{resize:vertical;min-height:85px}
+.submit-btn{
+ width:100%;padding:14px;font-size:14px;font-weight:600;
+ background:#5C7A5C;color:#fff;border:none;border-radius:50px;
+ cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.3px;
+ margin-top:6px;transition:background .25s,transform .25s,box-shadow .25s;
+}
+.submit-btn:hover{background:#4A6A4A;transform:translateY(-1px);box-shadow:0 8px 20px rgba(92,122,92,.4)}
+.ty{text-align:center;padding:32px 16px}
+.ty-icon{font-size:56px;margin-bottom:20px}
+.ty h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:500;color:#2C2317;margin-bottom:12px}
+.ty p{font-size:14px;line-height:1.8;color:#6B5744;margin-bottom:10px}
+.hidden{display:none!important}
+
+/* ══════════════════════════════════════════
+ REVEAL ANIMATIONS
+══════════════════════════════════════════ */
+.r{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rl{opacity:0;transform:translateX(-24px);transition:opacity .7s ease,transform .7s ease}
+.rr{opacity:0;transform:translateX(24px);transition:opacity .7s ease,transform .7s ease}
+.r.show,.rl.show,.rr.show{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+@keyframes aboutBorderDash{to{stroke-dashoffset:-220}}
+
+/* ══════════════════════════════════════════
+ MAGICAL PRELOADER & EFFECTS
+══════════════════════════════════════════ */
+.magical-preloader {
+ position: fixed;
+ inset: 0;
+ background: #FDFAF5;
+ z-index: 99999;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ transition: opacity 1s ease, visibility 1s ease;
+}
+.magical-preloader.fade-out {
+ opacity: 0;
+ visibility: hidden;
+}
+.paw-heart-wrap {
+ position: relative;
+ width: 70px;
+ height: 70px;
+ margin-bottom: 32px;
+}
+.telepathy-ring {
+ position: absolute;
+ inset: -30px;
+ border: 2px solid #5C7A5C;
+ border-radius: 50%;
+ opacity: 0;
+ animation: ripple 2.5s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
+}
+.telepathy-ring:nth-child(2) { animation-delay: 0.8s; }
+.telepathy-ring:nth-child(3) { animation-delay: 1.6s; }
+
+@keyframes ripple {
+ 0% { transform: scale(0.5); opacity: 0.6; }
+ 100% { transform: scale(1.8); opacity: 0; border-width: 0px; }
+}
+
+.paw-icon {
+ width: 100%;
+ height: 100%;
+ fill: #C97B6E; 
+ animation: heartbeat 1.5s infinite;
+ position: relative;
+ z-index: 2;
+ filter: drop-shadow(0 4px 10px rgba(201,123,110,0.4));
+}
+
+@keyframes heartbeat {
+ 0%, 100% { transform: scale(1); }
+ 15% { transform: scale(1.15); }
+ 30% { transform: scale(1); }
+ 45% { transform: scale(1.15); }
+}
+
+.preloader-text {
+ font-family: 'Playfair Display', serif;
+ font-size: 22px;
+ color: #6B5744;
+ font-style: italic;
+ animation: fadeInOut 2.5s infinite;
+}
+
+@keyframes fadeInOut {
+ 0%, 100% { opacity: 0.5; }
+ 50% { opacity: 1; }
+}
+
+/* ─── FLOATING MAGIC ORBS (HERO) ─── */
+.magic-orb {
+ position: absolute;
+ border-radius: 50%;
+ pointer-events: none;
+ z-index: 1;
+ animation: floatOrb 6s infinite ease-in-out alternate;
+}
+@keyframes floatOrb {
+ 0% { transform: translateY(0) scale(1); opacity: 0.4; }
+ 100% { transform: translateY(-40px) scale(1.2); opacity: 0.7; }
+}
+.orb-1 { width: 120px; height: 120px; top: 15%; left: 10%; animation-duration: 7s; background: radial-gradient(circle, rgba(201,123,110,0.25) 0%, rgba(201,123,110,0) 70%); }
+.orb-2 { width: 180px; height: 180px; top: 60%; right: 5%; animation-duration: 9s; animation-delay: 1s; background: radial-gradient(circle, rgba(92,122,92,0.2) 0%, rgba(92,122,92,0) 70%); }
+.orb-3 { width: 90px; height: 90px; bottom: 10%; left: 30%; animation-duration: 5s; animation-delay: 2s; background: radial-gradient(circle, rgba(184,146,58,0.2) 0%, rgba(184,146,58,0) 70%); }
+
+/* ══════════════════════════════════════════
+ RESPONSIVE
+══════════════════════════════════════════ */
+@media(max-width:1100px){
+ .hero{grid-template-columns:1fr 1fr}
+ .cards-grid{grid-template-columns:repeat(2,1fr)}
+ .offerings-grid{grid-template-columns:repeat(2,1fr)}
+ .testi-grid{grid-template-columns:repeat(2,1fr)}
+ .about-layout{grid-template-columns:1fr 1fr}
+ .what-layout{gap:60px}
+ .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+ .hero{padding-top:100px;padding-left:32px;padding-right:32px}
+ .hero-text{padding:48px 0 24px;max-width:560px;margin:0 auto}
+ .hero-desc{margin-left:auto;margin-right:auto}
+ .hero-buttons{justify-content:center}
+ .hero-social{justify-content:center}
+ .what-layout{grid-template-columns:1fr}
+ .what-visual{max-width:380px;margin:0 auto}
+ .what-quote-card{right:0;bottom:-16px}
+ .about-layout{grid-template-columns:1fr}
+ .about-img-wrap{max-width:360px;margin:0 auto}
+ .about-cert-card{right:0}
+ .steps-grid{grid-template-columns:1fr 1fr}
+ .steps-grid::before{display:none}
+ .nav{padding:0 24px}
+ .nav-links{display:none}
+ .hamburger{display:flex}
+ .section{padding:72px 32px}
+ .why-section,.sessions-section,.testi-section,.how-section,.about-section,.what-section{padding:72px 32px}
+ .cta-section{padding:72px 32px}
+ footer{padding:52px 32px 28px}
+}
+@media(max-width:640px){
+ .cards-grid{grid-template-columns:1fr}
+ .offerings-grid{grid-template-columns:1fr}
+ .testi-grid{grid-template-columns:1fr}
+ .steps-grid{grid-template-columns:1fr}
+ .footer-top{grid-template-columns:1fr}
+ .footer-bottom{flex-direction:column}
+ .frow{grid-template-columns:1fr}
+}
+.nav-links.mobile-open{
+ display:flex;flex-direction:column;position:fixed;
+ top:72px;left:0;right:0;bottom:0;
+ background:rgba(253,250,245,0.97);backdrop-filter:blur(16px);
+ align-items:center;justify-content:center;gap:28px;z-index:999;
+}
+.nav-links.mobile-open a{font-size:20px;padding:10px 20px}
+
+
+
+
+
+/* bird animation */
+/* ─── THE SOUL MESSENGER ANIMATION ─── */
+/* ─── THE SOUL MESSENGER UPGRADE ─── */
+/* ─── THE SACRED VOID (Isolation UI) ─── */
+/* ─── SACRED SUCCESS SCENE UI & ANIMATIONS ─── */
+.sacred-meadow-container {
+    position: fixed; 
+    inset: 0; 
+    display: none;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    z-index: 999999;
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(253,250,245,0.95) 0%, rgba(228,236,228,0.98) 100%);
+    opacity: 0;
+    overflow: hidden;
+}
+
+.sacred-meadow-container.active { 
+    display: flex; 
+    pointer-events: auto;
+    animation: heavenlyFadeIn 2s ease-in-out forwards; 
+}
+
+@keyframes heavenlyFadeIn {
+    from { opacity: 0; backdrop-filter: blur(0px); }
+    to { opacity: 1; backdrop-filter: blur(12px); }
+}
+
+/* Divine Background Glow */
+.divine-glow {
+    position: absolute;
+    width: 150vw;
+    height: 150vh;
+    background: radial-gradient(circle, rgba(184,146,58,0.08) 0%, transparent 60%);
+    animation: breatheGlow 6s infinite alternate ease-in-out;
+    z-index: 1;
+}
+
+@keyframes breatheGlow {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Spirit Elephants */
+.spirit-elephant {
+    position: absolute;
+    bottom: 10%;
+    width: 280px; /* Adjust based on your artwork */
+    max-width: 30vw;
+    z-index: 2;
+    opacity: 0;
+    filter: drop-shadow(0 10px 20px rgba(92,122,92,0.15));
+}
+
+.elephant-left {
+    left: -300px;
+    transform: rotate(5deg);
+}
+
+.elephant-right {
+    right: -300px;
+    transform: rotate(-5deg);
+}
+
+/* Elephant Animations applied via JS */
+.elephant-left.enter { animation: walkInLeft 3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+.elephant-right.enter { animation: walkInRight 3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+
+@keyframes walkInLeft {
+    0% { left: -300px; opacity: 0; }
+    100% { left: 5%; opacity: 0.9; }
+}
+@keyframes walkInRight {
+    0% { right: -300px; opacity: 0; }
+    100% { right: 5%; opacity: 0.9; }
+}
+
+/* Dialog & Bird Wrapper */
+.sacred-dialog-wrapper {
+    position: relative;
+    z-index: 10;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.sacred-dialog-wrapper.enter {
+    animation: gentleFloatUp 2.5s ease-out forwards, sacredSway 6s ease-in-out 2.5s infinite;
+}
+
+@keyframes gentleFloatUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes sacredSway {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* The Angelic Bird */
+.angel-bird {
+    width: 140px;
+    margin-bottom: -40px; /* Overlaps the card */
+    z-index: 11;
+    filter: drop-shadow(0 8px 16px rgba(201,123,110,0.2));
+    animation: gentleWingSway 4s infinite ease-in-out;
+}
+
+@keyframes gentleWingSway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+}
+
+/* Soft Parchment Card */
+.parchment-card {
+    background: #FFFCF8;
+    padding: 60px 50px 50px; 
+    border-radius: 30px;
+    box-shadow: 0 30px 60px rgba(184,146,58,0.08), inset 0 0 40px rgba(92,122,92,0.03);
+    width: 90%;
+    max-width: 500px; 
+    text-align: center;
+    border: 2px solid rgba(184,146,58,0.2);
+    position: relative;
+}
+
+.card-sparkles {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 24px;
+    opacity: 0.6;
+    animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; transform: scale(0.8); }
+    100% { opacity: 0.8; transform: scale(1.1); }
+}
+
+.sacred-heading {
+    font-family: 'Playfair Display', serif; 
+    font-size: 1.8rem; 
+    color: #3D5C40; 
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+.sacred-text {
+    font-size: 16px; 
+    color: #6B5744; 
+    line-height: 1.8; 
+    font-weight: 400;
+}
+
+/* .sacred-btn {
+    margin-top: 32px; 
+    width: 100%; 
+    border-radius: 50px;
+    background: linear-gradient(to right, #5C7A5C, #4A6A4A) !important;
+    font-size: 15px !important;
+    padding: 16px !important;
+    box-shadow: 0 10px 25px rgba(92,122,92,0.2) !important;
+} */
+
+.sacred-btn {
+    margin-top: 32px;
+    width: 100%;
+    border-radius: 50px;
+    background: linear-gradient(to right, #5C7A5C, #4A6A4A) !important;
+    font-size: 15px !important;
+    padding: 16px !important;
+    box-shadow: 0 10px 25px rgba(92, 122, 92, 0.2) !important;
+
+    /* ✨ Fix alignment */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+/* End of bird animation */
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+<div id="magicalPreloader" class="magical-preloader">
+ <div class="paw-heart-wrap">
+ <div class="telepathy-ring"></div>
+ <div class="telepathy-ring"></div>
+ <div class="telepathy-ring"></div>
+ <svg class="paw-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+ <path d="M256 224c-53.02 0-96 42.98-96 96 0 53.02 42.98 96 96 96s96-42.98 96-96c0-53.02-42.98-96-96-96zm-128-64c35.35 0 64-28.65 64-64s-28.65-64-64-64-64 28.65-64 64 28.65 64 64 64zm256 0c35.35 0 64-28.65 64-64s-28.65-64-64-64-64 28.65-64 64 28.65 64 64 64zm-128-32c35.35 0 64-28.65 64-64s-28.65-64-64-64-64 28.65-64 64 28.65 64 64 64z"/>
+ </svg>
+ </div>
+ <h2 class="preloader-text">Tuning into the animal realm...</h2>
+</div>
+
+<div id="prog"></div>
+
+<nav class="nav" id="nav">
+ <a href="index.html" class="nav-logo">
+ <img src="assets/image12.png" alt="Bridge of Whispers logo">
+ <span>Bridge of Whispers</span>
+ </a>
+ <ul class="nav-links" id="navLinks">
+ <li><a href="#what">What Is This</a></li>
+ <li><a href="#why">Why It Matters</a></li>
+ <li><a href="#how">How It Works</a></li>
+ <li><a href="#sessions">Sessions</a></li>
+ <li><a href="#about">About</a></li>
+ <li><a href="connect.html" class="nav-cta open-modal">Book a Session</a></li>
+ </ul>
+ <button class="hamburger" id="menuBtn" aria-label="Open menu">
+ <span></span><span></span><span></span>
+ </button>
+</nav>
+
+<section class="hero" id="home">
+ <div class="magic-orb orb-1"></div>
+ <div class="magic-orb orb-2"></div>
+ <div class="magic-orb orb-3"></div>
+
+ <div class="hero-text">
+ <p class="hero-label">Interspecies Telepathic Communication</p>
+ <h1 class="hero-h1">
+ What if you could hear<br>what your <em>animal companions</em><br>are thinking & feeling?
+ </h1>
+ <p class="hero-desc">
+ Through the sacred practice of interspecies telepathy, I bridge the silence between you and your beloved animals — so you can truly understand, heal and connect at a soul level.
+ </p>
+ <div class="hero-buttons">
+ <button class="btn btn-primary open-modal">Book a Session</button>
+ <a href="#what" class="btn btn-secondary">Learn More</a>
+ </div>
+
+ <div class="hero-social">
+ <div class="social-stat"><strong>100+</strong><span>Sessions Completed</span></div>
+ <div class="social-stat"><strong>2+</strong><span>Years of Practice</span></div>
+ <div class="social-stat"><strong>∞</strong><span>Love & Compassion</span></div>
+ </div>
+ </div>
+</section>
+
+<section class="what-section" id="what">
+ <div class="what-layout">
+ <div class="what-visual rl">
+ <div class="what-decor"></div>
+ <img class="what-img" src="assets/image8.png" alt="Prasha Singh animal communicator" loading="lazy">
+ <div class="what-quote-card">
+ <p>"Are you ready to listen to the whispers you have always sensed in your heart?"</p>
+ <span>— Prasha Singh</span>
+ </div>
+ </div>
+ <div class="what-text rr">
+ <p class="section-tag tag-green">Understanding Animal Telepathy</p>
+ <h2 class="section-h">What Is Animal Telepathy?</h2>
+ <div class="what-divider"></div>
+ <p>Animals don't just observe the world — they experience it with a profound wisdom that often eludes the human mind. Every behaviour, every gaze, every nudge carries a message waiting to be heard.</p>
+ <p><strong>Telepathic communication</strong> is the art of tuning into your animal's thoughts, emotions and physical sensations. Through a meditative state, I connect with their energy and translate what they're experiencing into words — with honesty, clarity and love.</p>
+ <p>This ancient practice works across any distance. Whether your companion is beside you or has crossed the Rainbow Bridge, the connection remains strong. No physical presence is needed — only an open heart.</p>
+ <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap">
+ <a href="#why" class="btn btn-secondary">Why This Matters</a>
+ <button class="btn btn-primary open-modal">Start a Conversation</button>
+ </div>
+ </div>
+ </div>
+</section>
+
+<section class="why-section" id="why">
+ <div class="why-top">
+ <p class="section-tag tag-green center-tag r">Why Animal Telepathy</p>
+ <h2 class="section-h r d1">What This Connection Can Do for You & Your Animal</h2>
+ <p class="section-p r d2">Animal telepathy opens a sacred doorway — to understanding, healing, and a connection that transcends every boundary of species and silence.</p>
+ </div>
+ <div class="cards-grid">
+ <img class="why-image" src="assets/image3.jpeg" alt="Why animal telepathy benefits" loading="lazy">
+ </div>
+</section>
+
+<section class="how-section" id="how">
+ <div class="how-top">
+ <p class="section-tag tag-green center-tag r">Our Process</p>
+ <h2 class="section-h r d1">How a Session Works</h2>
+ <p class="section-p r d2">Every session follows a loving, intentional process — designed to create a safe and meaningful connection for you and your animal companion.</p>
+ </div>
+ <div class="steps-grid">
+ <div class="step-card r d1">
+ <div class="step-num">1</div>
+ <h4>Choose Your Session</h4>
+ <p>Select Offline (written) or Online (live) format based on what feels right for you and your companion.</p>
+ </div>
+ <div class="step-card r d2">
+ <div class="step-num">2</div>
+ <h4>Share Details</h4>
+ <p>Send a clear photo, your pet's name, age, and your questions. Energy knows no distance — physical presence isn't needed.</p>
+ </div>
+ <div class="step-card r d3">
+ <div class="step-num">3</div>
+ <h4>The Connection</h4>
+ <p>I enter a quiet meditative state, tune into your animal's energy, and receive their messages with care and respect.</p>
+ </div>
+ <div class="step-card r d4">
+ <div class="step-num">4</div>
+ <h4>Receive Insights</h4>
+ <p>Your written report (24-48 hours) or live session (30 minutes) — delivered with love, clarity and honest truth.</p>
+ </div>
+ </div>
+</section>
+
+<section class="sessions-section" id="sessions">
+ <div class="sessions-top">
+ <p class="section-tag tag-blush center-tag r">Our Services</p>
+ <h2 class="section-h r d1">How We Can Help You & Your Companion</h2>
+ <p class="section-p r d2">Choose the service that resonates with your needs. Each one is offered with love, care and deep respect for your animal's journey.</p>
+ </div>
+
+ <div class="offerings-grid" id="allServicesGrid"></div>
+</section>
+
+<section class="about-section" id="about">
+ <div class="about-layout">
+ <div class="about-img-wrap rl">
+ <svg class="about-img-border" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true">
+ <defs>
+ <linearGradient id="aboutBorderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+ <stop offset="0%" stop-color="#5C7A5C" stop-opacity="0.35"/>
+ <stop offset="35%" stop-color="#C97B6E" stop-opacity="1"/>
+ <stop offset="70%" stop-color="#B8923A" stop-opacity="0.95"/>
+ <stop offset="100%" stop-color="#5C7A5C" stop-opacity="0.35"/>
+ </linearGradient>
+ </defs>
+ <rect class="about-border-rect glow" x="6" y="6" width="288" height="388" rx="32" ry="32"/>
+ <rect class="about-border-rect" x="6" y="6" width="288" height="388" rx="32" ry="32"/>
+ </svg>
+ <img class="about-img" src="assets/imageprashahomepage.png" alt="Prasha Singh — Animal Communicator" loading="lazy">
+ <div class="about-cert-card">
+ <span class="cert-pill">✓ Certified</span>
+ <h4>Nature & Animal Telepathic Communication</h4>
+ <p>Celtic Learning Solutions · July 2025</p>
+ </div>
+ </div>
+ <div class="about-text rr">
+ <p class="section-tag tag-green">Meet Your Guide</p>
+ <h2 class="section-h">Hello, I'm Prasha Singh</h2>
+ <p>I've always felt things others couldn't quite explain — a quiet knowing of what animals were carrying, long before they could express it in ways humans could recognise. This sensitivity became my calling.</p>
+ <div class="blockquote">
+ <p>"Animals are not voiceless. They simply need someone patient enough to listen in the language of the heart."</p>
+ </div>
+ <p>After years of dedicated training and hundreds of sessions, I now help pet parents across India and worldwide find the understanding, healing and closure they have been searching for — through the quiet wisdom of their beloved companions.</p>
+ <div class="cert-chips">
+ <span class="cert-chip">🎓 Celtic Learning Solutions · 2025</span>
+ <span class="cert-chip">🎓 Mystic Purple · 2023</span>
+ </div>
+ <div class="about-buttons">
+ <a href="about.html" class="btn btn-secondary">Read My Full Story</a>
+ <button class="btn btn-primary open-modal">Book with Prasha</button>
+ </div>
+ </div>
+ </div>
+</section>
+
+<section class="testi-section">
+ <div class="testi-top">
+ <p class="section-tag tag-blush center-tag r">Words from the Heart</p>
+ <h2 class="section-h r d1">What Families Are Saying</h2>
+ </div>
+ <div class="testi-grid">
+ <div class="testi r d1">
+ <div class="stars">★★★★★</div>
+ <blockquote>"I was sceptical at first, but what Prasha shared about my dog Max left me completely speechless. Details only he would know. I wept with relief and gratitude."</blockquote>
+ <div class="testi-author">
+ <div class="testi-avatar">🐕</div>
+ <div class="testi-name"><strong>Anjali R.</strong><span>Mumbai · Max's Human</span></div>
+ </div>
+ </div>
+ <div class="testi r d2">
+ <div class="stars">★★★★★</div>
+ <blockquote>"After losing my cat Meeru, I desperately needed closure. Prasha's session brought me so much peace. I finally understood why Meeru left and I know she is at peace."</blockquote>
+ <div class="testi-author">
+ <div class="testi-avatar">🐱</div>
+ <div class="testi-name"><strong>Kavitha M.</strong><span>Bangalore · Meeru's Human</span></div>
+ </div>
+ </div>
+ <div class="testi r d3">
+ <div class="stars">★★★★★</div>
+ <blockquote>"Our rescue dog was anxious and destructive. One session with Prasha and we finally understood the root cause. Within a week, his behaviour had transformed completely."</blockquote>
+ <div class="testi-author">
+ <div class="testi-avatar">🐶</div>
+ <div class="testi-name"><strong>Rohan & Priya S.</strong><span>Delhi · Bruno's Family</span></div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<section class="cta-section">
+ <h2>Ready to Hear What Your Companion Has Been Trying to Tell You?</h2>
+ <p>Every session is an act of love — for you and for the beautiful soul who chose to share their life with yours.</p>
+ <div class="cta-btns">
+ <button class="btn btn-white open-modal">Book a Session Today</button>
+ <a href="#sessions" class="btn btn-secondary" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.5)">View All Offerings</a>
+ </div>
+</section>
+
+<footer>
+ <div class="footer-wrap">
+ <div class="footer-top">
+ <div class="footer-brand">
+ <img src="assets/image12.png" alt="Bridge of Whispers">
+ <p>Bridging hearts across species through the sacred art of interspecies telepathic communication. Serving souls across India and worldwide.</p>
+ </div>
+ <div class="footer-col">
+ <h5>Navigate</h5>
+ <a href="index.html">Home</a>
+ <a href="offerings.html">All Offerings</a>
+ <a href="about.html">About Prasha</a>
+ <a href="connect.html">Connect</a>
+ <a href="policies.html">Policies</a>
+ </div>
+ <div class="footer-col">
+ <h5>Sessions</h5>
+ <a href="#sessions">Offline Session</a>
+ <a href="#sessions">Online Session</a>
+ <a href="aura-scan.html">Aura Scan</a>
+ <a href="chakra-healing.html">Chakra Healing</a>
+ <a href="deceased-animals.html">Deceased Animals</a>
+ </div>
+ <div class="footer-col">
+ <h5>Connect</h5>
+ <a href="connect.html">Book a Session</a>
+ <a href="connect.html">Send a Message</a>
+ <a href="policies.html">Disclaimer</a>
+ </div>
+ </div>
+ <div class="footer-divider"></div>
+ <div class="footer-bottom">
+ <div>
+ <p class="footer-copy">© 2026 The Bridge of Whispers · All rights reserved</p>
+ <p class="disclaimer">All sessions are for energetic and emotional support only — not a substitute for veterinary or medical care. For legal purposes, telepathic communication is offered for recreational use.</p>
+ </div>
+ </div>
+ </div>
+</footer>
+
+<div class="overlay" id="overlay">
+ <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+ <div class="modal-stripe"></div>
+ <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+ <div class="modal-inner">
+ <div id="formView">
+ <h2 id="modal-title">Book a Session</h2>
+ <p class="sub">Fill in the form and I'll reach out on WhatsApp to confirm everything.</p>
+ <form id="bookForm" method="POST">
+ <div class="fg">
+ <label>Service *</label>
+ <select name="service" required id="serviceSelect">
+ <option value="">Please select a service…</option>
+ <option>Animal Telepathy — Offline (₹1,500 per pet)</option>
+ <option>Animal Telepathy — Online (₹3,500 for 2-3 pets)</option>
+ <option>Aura Scan for Animals (₹1,000)</option>
+ <option>Chakra Scan & Healing (₹1,000)</option>
+ <option>White Light Healing (₹1,000)</option>
+ <option>Landscape Communication (₹1,000)</option>
+ <option>Deceased Animal Communication (₹1,000)</option>
+ </select>
+ </div>
+ <div class="frow">
+ <div class="fg">
+ <label>Your Name *</label>
+ <input type="text" name="name" required placeholder="Full name">
+ </div>
+ <div class="fg">
+ <label>Mobile *</label>
+ <input type="tel" name="phone" required placeholder="10-digit number" maxlength="10">
+ </div>
+ </div>
+ <div class="fg">
+ <label>Email *</label>
+ <input type="email" name="email" required placeholder="you@example.com">
+ </div>
+ <div class="fg">
+ <label>Pet's Name & Questions</label>
+ <textarea name="message" placeholder="Your pet's name, age, and any questions you have…"></textarea>
+ </div>
+ <button type="submit" class="submit-btn">Send to Bridge of Whispers →</button>
+ </form>
+ </div>
+ <div class="ty hidden" id="thankView">
+ <div class="ty-icon">🌿</div>
+ <h3>Thank You, Dear Soul</h3>
+ <p>Your message has reached me. I will be in touch on WhatsApp very soon to confirm your session details.</p>
+ <p style="font-size:13px;margin-top:6px">Sessions are delivered within 24–48 hours (Offline) or scheduled at a mutually convenient time (Online). Trust the process and allow it to unfold with patience.</p>
+ <button class="btn btn-primary" style="margin-top:24px" id="closeThank">Close</button>
+ </div>
+ </div>
+ </div>
+</div>
+
+
+
+<audio id="ambientSound" preload="auto" loop>
+  <source src="assets/nightingale.mp3">
+</audio>
+<!-- End of ambient sound audio-->
+
+<script>
+(function(){
+ // Config embedded directly (no fetch needed - works when opening HTML directly)
+
+ const config = {
+ "services": [
+ {
+ "id": "animal-telepathy",
+ "name": "Animal Telepathy",
+ "image": "assets/image1.png",
+ "price": "From ₹1,500",
+ "priceNote": "Offline or Online — see details",
+ "shortDesc": "Hear what your companion is thinking and feeling. Available as Offline (written report) or Online (live session).",
+ "features": [
+ "Offline: written report in 24–48 hours (₹1,500 per pet)",
+ "Online: 30-min live call, unlimited questions (₹3,500 for 2–3 pets)",
+ "Works across any distance",
+ "Learn More for full details"
+ ],
+ "detailPage": "animal-telepathy.html"
+ },
+ {
+ "id": "aura-scan",
+ "name": "Aura Scan for Animals",
+ "icon": "🌈",
+ "image": "assets/image6.png",
+ "price": "₹1,000",
+ "priceNote": "for up to 3 healing sessions",
+ "shortDesc": "Explore your animal's emotional and energetic well-being through their aura field.",
+ "features": [
+ "Identify stress & imbalances",
+ "Emotional state insights",
+ "Up to 3 healing sessions",
+ "Written summary report"
+ ],
+ "detailPage": "aura-scan.html"
+ },
+ {
+ "id": "chakra-healing",
+ "name": "Chakra Scan & Healing",
+ "icon": "⚡",
+ "image": "assets/image2.png",
+ "price": "₹1,000",
+ "priceNote": "for up to 3 healing sessions",
+ "shortDesc": "Restore balance to your animal's seven energy centers and support their well-being.",
+ "features": [
+ "Full 7-chakra assessment",
+ "Blockage identification",
+ "Healing energy sent",
+ "Up to 3 sessions included"
+ ],
+ "detailPage": "chakra-healing.html"
+ },
+ {
+ "id": "white-light-healing",
+ "name": "White Light Healing",
+ "icon": "☀️",
+ "image": "assets/image7.png",
+ "price": "₹1,000",
+ "priceNote": "for up to 3 healing sessions",
+ "shortDesc": "Surround your companion with pure divine healing energy for peace and comfort.",
+ "features": [
+ "Divine healing energy",
+ "Emotional & physical support",
+ "Deep relaxation",
+ "Up to 3 sessions included"
+ ],
+ "detailPage": "white-light-healing.html"
+ },
+ {
+ "id": "landscape-communication",
+ "name": "Landscape Communication",
+ "icon": "🌍",
+ "image": "assets/image13.png",
+ "price": "₹1,000",
+ "priceNote": "per reading",
+ "shortDesc": "Connect with the spirit of a place — your home, garden or land.",
+ "features": [
+ "Land energy reading",
+ "Spirit of place connection",
+ "Harmony guidance",
+ "Written report"
+ ],
+ "detailPage": "landscape-communication.html"
+ },
+ {
+ "id": "deceased-animals",
+ "name": "Deceased Animal Communication",
+ "icon": "🕊️",
+ "image": "assets/image14.png",
+ "price": "₹1,000",
+ "priceNote": "for up to 2 sessions",
+ "shortDesc": "Connect with your beloved companion who has crossed the Rainbow Bridge.",
+ "features": [
+ "Messages from spirit",
+ "Peace & closure",
+ "Final reassurances",
+ "Up to 2 sessions included"
+ ],
+ "detailPage": "deceased-animals.html"
+ }
+ ]
+ };
+
+ // Populate services (6 cards: Animal Telepathy + 5 others)
+ const grid = document.getElementById('allServicesGrid');
+ if (grid) {
+ config.services.forEach((service, idx) => {
+ const card = document.createElement('div');
+ card.className = 'offering-card r d' + ((idx%3)+1);
+ card.innerHTML = `
+ <div class="offering-img-wrap">
+ <img src="${service.image}" alt="${service.name}" loading="lazy">
+ </div>
+ <div class="offering-body">
+ <h4>${service.name}</h4>
+ <p class="offering-desc">${service.shortDesc}</p>
+ <div class="offering-price">${service.price} <small>${service.priceNote}</small></div>
+ <ul style="text-align:left;margin:12px 0;font-size:13px;color:#6B5744;width:100%;">
+ ${service.features.map(f => `<li style="padding:6px 0;padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:#5C7A5C;font-weight:700;">✓</span>${f}</li>`).join('')}
+ </ul>
+ <a href="${service.detailPage}" class="btn btn-secondary">Learn More</a>
+ </div>
+ `;
+ grid.appendChild(card);
+ });
+ }
+
+ // Scroll progress
+ const prog = document.getElementById('prog');
+ window.addEventListener('scroll', function(){
+ var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+ prog.style.width = pct + '%';
+ }, {passive:true});
+
+ // Nav scrolled state
+ var nav = document.getElementById('nav');
+ window.addEventListener('scroll', function(){
+ nav.classList.toggle('scrolled', window.scrollY > 50);
+ }, {passive:true});
+
+ // Mobile menu
+ var menuBtn = document.getElementById('menuBtn');
+ var navLinks = document.getElementById('navLinks');
+ menuBtn.addEventListener('click', function(){
+ var open = navLinks.classList.toggle('mobile-open');
+ document.body.style.overflow = open ? 'hidden' : '';
+ menuBtn.children[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)' : '';
+ menuBtn.children[1].style.opacity = open ? '0' : '1';
+ menuBtn.children[2].style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
+ });
+ navLinks.querySelectorAll('a').forEach(function(a){
+ a.addEventListener('click', function(){
+ navLinks.classList.remove('mobile-open');
+ document.body.style.overflow = '';
+ menuBtn.children[0].style.transform = '';
+ menuBtn.children[1].style.opacity = '1';
+ menuBtn.children[2].style.transform = '';
+ });
+ });
+
+ // Reveal on scroll
+ var revealEls = document.querySelectorAll('.r,.rl,.rr');
+ var obs = new IntersectionObserver(function(entries){
+ entries.forEach(function(e){
+ if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target); }
+ });
+ }, {threshold:0.1, rootMargin:'0px 0px -32px 0px'});
+ revealEls.forEach(function(el){ obs.observe(el); });
+
+ // Smooth anchor scroll
+ document.querySelectorAll('a[href^="#"]').forEach(function(a){
+ a.addEventListener('click', function(e){
+ var t = document.querySelector(a.getAttribute('href'));
+ if(t){ e.preventDefault(); window.scrollTo({top:t.offsetTop - 72, behavior:'smooth'}); }
+ });
+ });
+
+ // Magical Preloader Fade Out
+ window.addEventListener('load', function() {
+ setTimeout(function() {
+ var preloader = document.getElementById('magicalPreloader');
+ if(preloader) {
+ preloader.classList.add('fade-out');
+ }
+ }, 1800);
+ });
+
+
+
+
+ // Audio Toggle Button
+ // ─── Ambient Sound on Book Session Click ───
+// const ambientSound = document.getElementById('ambientSound');
+// const bookButtons = document.querySelectorAll('.open-modal');
+// const modalOverlay = document.getElementById('overlay');
+// const modalCloseBtn = document.getElementById('modalClose');
+// const thankCloseBtn = document.getElementById('closeThank');
+
+// let soundPlaying = false;
+
+// function fadeInSound(){
+//  if(!ambientSound) return;
+
+//  ambientSound.volume = 0;
+//  ambientSound.play();
+
+//  let fadeIn = setInterval(() => {
+//    if(ambientSound.volume < 0.5){
+//      ambientSound.volume += 0.05;
+//    } else {
+//      clearInterval(fadeIn);
+//    }
+//  }, 100);
+
+//  soundPlaying = true;
+// }
+
+// function fadeOutSound(){
+//  if(!ambientSound || !soundPlaying) return;
+
+//  let fadeOut = setInterval(() => {
+//    if(ambientSound.volume > 0.05){
+//      ambientSound.volume -= 0.05;
+//    } else {
+//      ambientSound.pause();
+//      ambientSound.currentTime = 0;
+//      clearInterval(fadeOut);
+//    }
+//  }, 100);
+
+//  soundPlaying = false;
+// }
+
+// bookButtons.forEach(btn => {
+//  btn.addEventListener('click', function(){
+//    fadeInSound();
+//  });
+// });
+
+// if(modalCloseBtn){
+//  modalCloseBtn.addEventListener('click', fadeOutSound);
+// }
+
+// if(thankCloseBtn){
+//  thankCloseBtn.addEventListener('click', fadeOutSound);
+// }
+
+// if(modalOverlay){
+//  modalOverlay.addEventListener('click', function(e){
+//    if(e.target === modalOverlay){
+//      fadeOutSound();
+//    }
+//  });
+// }
+/* End of Audio Toggle Button */
+
+
+
+
+// ─── Ambient Sound on Modal Open ───
+const ambientSound = document.getElementById('ambientSound');
+const modalOverlay = document.getElementById('overlay');
+const modalCloseBtn = document.getElementById('modalClose');
+const thankCloseBtn = document.getElementById('closeThank');
+
+let soundPlaying = false;
+
+// function fadeInSound(){
+//  if(!ambientSound) return;
+
+//  ambientSound.volume = 0;
+
+//  ambientSound.play().then(() => {
+//    let fadeIn = setInterval(() => {
+//      if(ambientSound.volume < 0.4){
+//        ambientSound.volume += 0.05;
+//      } else {
+//        clearInterval(fadeIn);
+//      }
+//    }, 100);
+//    soundPlaying = true;
+//  }).catch(err => {
+//    console.log("Audio blocked by browser:", err);
+//  });
+// }
+
+
+// var ambientSound = document.getElementById('nightingaleAudio');
+// var soundPlaying = false;
+
+// function fadeInSound() {
+//     if (!ambientSound) return;
+
+//     // Reset and Start
+//     ambientSound.volume = 0;
+    
+//     // Play returns a promise. We handle it to avoid "User did not interact" errors.
+//     var playPromise = ambientSound.play();
+
+//     if (playPromise !== undefined) {
+//         playPromise.then(() => {
+//             let fadeIn = setInterval(() => {
+//                 if (ambientSound.volume < 0.35) { // Nightingale sounds best at lower volumes
+//                     ambientSound.volume = Math.min(ambientSound.volume + 0.05, 0.4);
+//                 } else {
+//                     clearInterval(fadeIn);
+//                 }
+//             }, 150);
+//             soundPlaying = true;
+//         }).catch(error => {
+//             console.log("Audio playback was prevented. Use a direct click.", error);
+//         });
+//     }
+// }
+
+// function fadeOutSound(){
+//  if(!ambientSound || !soundPlaying) return;
+
+//  let fadeOut = setInterval(() => {
+//    if(ambientSound.volume > 0.05){
+//      ambientSound.volume -= 0.05;
+//    } else {
+//      ambientSound.pause();
+//      ambientSound.currentTime = 0;
+//      clearInterval(fadeOut);
+//    }
+//  }, 100);
+
+//  soundPlaying = false;
+// }
+
+
+
+
+
+
+
+
+// var ambientSound = document.getElementById('nightingaleAudio');
+// var soundPlaying = false;
+var fadeInterval; // Global variable to track the timer
+
+function fadeInSound() {
+    if (!ambientSound) return;
+
+    // 1. Clear any existing fade timers to prevent "volume flickering"
+    clearInterval(fadeInterval);
+
+    // 2. Reset and Prime
+    ambientSound.volume = 0;
+    
+    // 3. The "Unlocking" Play
+    ambientSound.play().then(() => {
+        console.log("Audio started successfully at volume 0. Starting fade...");
+        soundPlaying = true;
+        
+        fadeInterval = setInterval(() => {
+            // Check if volume is less than 0.4 (your target)
+            if (ambientSound.volume < 0.35) { 
+                // Using a smaller increment for a smoother spiritual feel
+                ambientSound.volume = Math.min(ambientSound.volume + 0.02, 1);
+            } else {
+                clearInterval(fadeInterval);
+                console.log("Fade-in complete. Current volume:", ambientSound.volume);
+            }
+        }, 100); // Slightly slower for a more natural transition
+    }).catch(err => {
+        console.warn("Nightingale was blocked. This usually happens if the user hasn't interacted with the page yet.", err);
+    });
+}
+
+function fadeOutSound() {
+    if (!ambientSound) return;
+    
+    clearInterval(fadeInterval); // Stop any ongoing fade-in
+    
+    fadeInterval = setInterval(() => {
+        if (ambientSound.volume > 0.02) {
+            ambientSound.volume = Math.max(ambientSound.volume - 0.05, 0);
+        } else {
+            ambientSound.pause();
+            ambientSound.currentTime = 0; // Reset to start for next time
+            clearInterval(fadeInterval);
+            soundPlaying = false;
+            console.log("Nightingale has returned to the woods (Audio stopped).");
+        }
+    }, 100);
+}
+
+
+
+
+
+// IMPORTANT: Only target BUTTONS, not anchor navigation links
+document.querySelectorAll('button.open-modal').forEach(btn => {
+ btn.addEventListener('click', function(){
+  console.log("Book clicked");
+  console.log("Fading in sound");
+   fadeInSound();
+ });
+});
+
+
+// Stop when modal closes
+if(modalCloseBtn){
+ modalCloseBtn.addEventListener('click', fadeOutSound);
+}
+
+if(thankCloseBtn){
+ thankCloseBtn.addEventListener('click', fadeOutSound);
+}
+
+if(modalOverlay){
+ modalOverlay.addEventListener('click', function(e){
+   if(e.target === modalOverlay){
+     fadeOutSound();
+   }
+ });
+}
+
+
+// for confetti sprinkles after booking is confirmed
+// ─── CELEBRATION SPARKLES ───
+function fireSparkles() {
+   const duration = 3 * 1000;
+   const animationEnd = Date.now() + duration;
+   const defaults = { 
+     startVelocity: 30, 
+     spread: 360, 
+     ticks: 60, 
+     zIndex: 10001, // Ensure it's above the modal
+     colors: ['#5C7A5C', '#C97B6E', '#B8923A', '#FDFAF5'] // Your brand palette
+   };
+
+   function randomInRange(min, max) {
+     return Math.random() * (max - min) + min;
+   }
+
+   const interval = setInterval(function() {
+     const timeLeft = animationEnd - Date.now();
+
+     if (timeLeft <= 0) {
+       return clearInterval(interval);
+     }
+
+     const particleCount = 50 * (timeLeft / duration);
+     
+     // Fire from the left side
+     confetti({
+       ...defaults,
+       particleCount,
+       origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+     });
+     // Fire from the right side
+     confetti({
+       ...defaults,
+       particleCount,
+       origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+     });
+   }, 250);
+ }
+
+//  // Trigger effect on Form Success
+//  const bookForm = document.getElementById('bookForm');
+//  if(bookForm) {
+//    bookForm.addEventListener('submit', function(e) {
+//      // Wait a tiny moment for the 'Thank You' view to show
+//      setTimeout(fireSparkles, 100); 
+//    });
+//  }
+
+
+// --- UPDATED FORM SUBMISSION WITH MESSENGER BIRD ---
+// var bookForm = document.getElementById('bookForm');
+//   if (bookForm) {
+//     bookForm.addEventListener('submit', function(e) {
+//       e.preventDefault();
+
+//       // 1. Hide the standard modal smoothly
+//       var overlay = document.getElementById('overlay');
+//       overlay.style.transition = 'opacity 0.4s ease';
+//       overlay.style.opacity = '0';
+
+//       setTimeout(function() {
+//         overlay.style.display = 'none';
+        
+//         // 2. Show the Soul Messenger (The Bird)
+//         var messenger = document.getElementById('messengerView');
+//         if (messenger) {
+//             messenger.classList.add('active');
+//         }
+        
+//         // 3. Fire Sparkles (The "Emotional Happiness" effect)
+//         if (typeof fireSparkles === 'function') {
+//             fireSparkles();
+//         }
+
+//         // 4. Play Nightingale (The Messenger's Song)
+//         if (typeof fadeInSound === 'function') {
+//             fadeInSound(); 
+//         }
+        
+//       }, 400);
+
+//       // Optional: Add your WhatsApp/Email sending logic here
+//       console.log("Form submitted: Messenger Bird dispatched.");
+//     });
+//   }
+
+ //End of confetti sprinkles after booking is confirmed -->
+
+
+
+
+
+
+
+
+
+
+//  document.getElementById('bookForm').addEventListener('submit', function(e) {
+//     e.preventDefault();
+
+//     // 1. Fade the old UI
+//     document.getElementById('overlay').style.opacity = '0';
+    
+//     setTimeout(() => {
+//         document.getElementById('overlay').style.display = 'none';
+        
+//         // 2. Launch the Bird
+//         const messenger = document.getElementById('messengerView');
+//         messenger.classList.add('active');
+        
+//         // 3. Emotional Happiness: Fountain Sparkles
+//         // We trigger multiple bursts for a 'magical' feel
+//         var end = Date.now() + (2 * 1000);
+//         (function frame() {
+//             confetti({
+//                 particleCount: 2,
+//                 angle: 60,
+//                 spread: 55,
+//                 origin: { x: 0 },
+//                 colors: ['#5C7A5C', '#C97B6E']
+//             });
+//             confetti({
+//                 particleCount: 2,
+//                 angle: 120,
+//                 spread: 55,
+//                 origin: { x: 1 },
+//                 colors: ['#B8923A', '#FDFAF5']
+//             });
+
+//             if (Date.now() < end) {
+//                 requestAnimationFrame(frame);
+//             }
+//         }());
+
+//         // 4. Play the Nightingale song
+//         if(typeof fadeInSound === 'function') fadeInSound();
+        
+//     }, 500);
+// });
+
+
+
+
+
+
+
+
+
+// document.getElementById('bookForm').addEventListener('submit', function(e) {
+//     e.preventDefault();
+
+//     // 1. Hide the Booking Form Modal immediately
+//     var overlay = document.getElementById('overlay');
+//     overlay.style.display = 'none'; 
+    
+//     // 2. Activate the Messenger Bird & Isolation Void
+//     const messenger = document.getElementById('messengerView');
+//     messenger.classList.add('active');
+    
+//     // 3. The Nightingale Song (Audio)
+//     if(typeof fadeInSound === 'function') fadeInSound();
+
+//     // 4. THE MAGIC: Front-Layer Fountain Sparkles
+//     // We wait 800ms so they burst exactly as the bird arrives in center
+//     setTimeout(() => {
+//         var end = Date.now() + (3 * 1000);
+//         var colors = ['#5C7A5C', '#C97B6E', '#B8923A', '#E8DCC4'];
+
+//         (function frame() {
+//             confetti({
+//                 particleCount: 3,
+//                 angle: 60,
+//                 spread: 55,
+//                 origin: { x: 0, y: 0.6 },
+//                 colors: colors,
+//                 zIndex: 1000000 // Higher than the Messenger
+//             });
+//             confetti({
+//                 particleCount: 3,
+//                 angle: 120,
+//                 spread: 55,
+//                 origin: { x: 1, y: 0.6 },
+//                 colors: colors,
+//                 zIndex: 1000000
+//             });
+
+//             if (Date.now() < end) {
+//                 requestAnimationFrame(frame);
+//             }
+//         }());
+//     }, 800);
+// });
+
+
+
+
+
+
+
+document.getElementById('bookForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // 1. Hide the standard form gently
+    var overlay = document.getElementById('overlay');
+    overlay.style.transition = 'opacity 0.8s ease';
+    overlay.style.opacity = '0';
+    
+    setTimeout(() => {
+        overlay.style.display = 'none'; 
+        
+        // 2. Activate the Sacred Meadow
+        const sacredView = document.getElementById('sacredSuccessView');
+        sacredView.classList.add('active');
+        
+        // 3. Play Nightingale softly
+        if(typeof fadeInSound === 'function') fadeInSound();
+
+        // 4. Sequence Timeline
+        
+        // T+800ms: Elephants walk in
+        setTimeout(() => {
+            document.getElementById('eleLeft').classList.add('enter');
+            document.getElementById('eleRight').classList.add('enter');
+        }, 800);
+
+        // T+2800ms: Elephants raise trunks & release Spirit Petals
+        setTimeout(() => {
+            fireSpiritPetals();
+        }, 2800);
+
+        // T+4000ms: Angelic bird and dialog float down from the heavens
+        setTimeout(() => {
+            document.getElementById('sacredDialogGroup').classList.add('enter');
+        }, 4000);
+
+    }, 800);
+});
+
+// ─── SOFT SPIRIT PETALS (Custom Confetti) ───
+function fireSpiritPetals() {
+    var end = Date.now() + (5 * 1000); // 5 seconds of gentle floating
+    // Pastel colors: Sage, Blush, Warm Gold, Cream
+    var colors = ['#D4E4D4', '#F5E4E2', '#E8DCC4', '#FDFAF5'];
+
+    (function frame() {
+        // Left Elephant Trunk Petals
+        confetti({
+            particleCount: 2,
+            angle: 60,
+            spread: 45,
+            origin: { x: 0.15, y: 0.7 }, // Adjust origin based on elephant PNG height
+            colors: colors,
+            zIndex: 1000000,
+            gravity: 0.4, // Slower fall
+            scalar: 1.2, // Slightly larger petals
+            ticks: 300 // Last longer on screen
+        });
+        
+        // Right Elephant Trunk Petals
+        confetti({
+            particleCount: 2,
+            angle: 120,
+            spread: 45,
+            origin: { x: 0.85, y: 0.7 },
+            colors: colors,
+            zIndex: 1000000,
+            gravity: 0.4,
+            scalar: 1.2,
+            ticks: 300
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
+}
+
+
+
+
+
+})();
+</script>
+
+
+<!-- <audio id="ambientSound" preload="auto" loop>
+  <source src="assets/nightingale.mp3" preload="auto"></audio> -->
+
+
+
+<script src="form-handler.js"></script> 
+
+
+
+  <!-- for confetti sprinkles after booking is confirmed -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<!-- End of confetti sprinkles after booking is confirmed -->
+
+
+
+
+<!-- bird animation -->
+<!-- <div class="messenger-container" id="messengerView">
+  <div class="bird-wrapper">
+      <svg width="100" height="70" viewBox="0 0 100 70" style="filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));">
+          <path d="M10 45C25 40 40 10 70 25C85 32 95 50 95 50L75 55C60 52 45 65 10 45Z" fill="#5C7A5C"/>
+          <path d="M30 35C40 25 55 20 70 25" stroke="white" stroke-width="0.5" fill="none"/>
+          <circle cx="85" cy="42" r="1" fill="white"/>
+      </svg>
+
+      <div class="thread"></div>
+
+      <div class="hanging-card">
+          <div style="font-size: 2.5rem; margin-bottom: 15px;">🕊️</div>
+          <h3 style="font-family: 'Playfair Display'; font-size: 1.8rem; color: #2C2317; margin-bottom: 15px;">Your message is on its wings</h3>
+          <p style="font-size: 15px; color: #5C7A5C; line-height: 1.6; font-weight: 500;">"Nature does not hurry, yet everything is accomplished."</p>
+          <p style="font-size: 13px; color: #888; margin-top: 15px;">Prasha will connect with you via WhatsApp shortly.</p>
+          <button class="btn btn-primary" style="margin-top: 25px; width: 100%; border-radius: 15px;" onclick="location.reload()">Return to Peace</button>
+      </div>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="sacred-meadow-container" id="sacredSuccessView">
+  
+  <div class="divine-glow"></div>
+
+  <img src="assets/elephant-left.png" alt="Spirit Elephant" class="spirit-elephant elephant-left" id="eleLeft">
+  <img src="assets/elephant-right.png" alt="Spirit Elephant" class="spirit-elephant elephant-right" id="eleRight">
+
+  <div class="sacred-dialog-wrapper" id="sacredDialogGroup">
+    <img src="assets/angel-bird.png" alt="Angelic Bird" class="angel-bird">
+    
+    <div class="parchment-card">
+      <div class="card-sparkles">✨</div>
+      <h3 class="sacred-heading">Your message has been received with love.</h3>
+      <p class="sacred-text">Our spirit guides are already listening. The universe is holding space for you and your companion.</p>
+      <button class="btn btn-primary sacred-btn" onclick="location.reload()">Return to Peace</button>
+    </div>
+  </div>
+
+</div> -->
+
+
+<div class="sacred-meadow-container" id="sacredSuccessView">
+  
+  <div class="divine-glow"></div>
+
+  <img src="assets/elephant_left_good.png" alt="Spirit Elephant" class="spirit-elephant elephant-left" id="eleLeft">
+  <img src="assets/elephant_right_good.png" alt="Spirit Elephant" class="spirit-elephant elephant-right" id="eleRight">
+
+  <div class="sacred-dialog-wrapper" id="sacredDialogGroup">
+    <img src="assets/bird_good.png" alt="Angelic Bird" class="angel-bird">
+    
+    <div class="parchment-card">
+      <div class="card-sparkles">✨</div>
+      <h3 class="sacred-heading">Your message has been received with love.</h3>
+      <p class="sacred-text">The universe is holding space for you and your companion. Prasha Sing will get in touch on email/whatsapp.</p>
+      <button class="btn btn-primary sacred-btn" onclick="location.reload()">Return to Peace</button>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- End of bird animation -->
+
+
+
+</body>
+</html>
