@@ -199,7 +199,7 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#sessions">All Sessions</a></li>
     <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html" class="nav-cta">Book Now</a></li>
+    <li><a href="index.html?service=animal-telepathy#book" class="nav-cta">Book Now</a></li>
   </ul>
   <button class="hamburger" id="menuBtn" aria-label="Open menu">
     <span></span><span></span><span></span>
@@ -213,7 +213,7 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
       Hear what your animal companions are thinking and feeling. Choose the format that suits you best — a detailed written report (Offline) or a live conversation (Online).
     </p>
     <a href="index.html#sessions" class="btn btn-secondary">← Back to All Offerings</a>
-    <a href="index.html" class="btn btn-primary">Book This Session</a>
+    <a href="index.html?service=animal-telepathy#book" class="btn btn-primary">Book This Session</a>
   </div>
 </section>
 
@@ -259,7 +259,7 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
     <div class="cta-box">
       <h3>Ready to Begin?</h3>
       <p>Choose Offline or Online when you book. We'll confirm everything over WhatsApp.</p>
-      <a href="index.html" class="btn btn-primary">Book This Session</a>
+      <a href="index.html?service=animal-telepathy#book" class="btn btn-primary">Book This Session</a>
     </div>
   </div>
 </section>
@@ -513,7 +513,9 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#sessions">All Sessions</a></li>
     <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html" class="nav-cta">Book Now</a></li>
+    <!-- <li><a href="index.html?service=animal-telepathy#book" class="nav-cta">Book Now</a></li> -->
+    <a href="#" class="nav-cta open-modal">Book Now</a>
+
   </ul>
   <button class="hamburger" id="menuBtn" aria-label="Open menu">
     <span></span><span></span><span></span>
@@ -531,7 +533,7 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
       Hear what your animal companions are thinking and feeling. Choose the format that suits you best — a detailed written report (Offline) or a live conversation (Online).
     </p>
     <a href="index.html#sessions" class="btn btn-secondary">← Back to All Offerings</a>
-    <a href="index.html" class="btn btn-primary">Book This Session</a>
+    <a href="index.html?service=animal-telepathy#book" class="btn btn-primary">Book This Session</a>
   </div> -->
 
 </section>
@@ -578,7 +580,7 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
     <div class="cta-box">
       <h3>Ready to Begin?</h3>
       <p>Choose Offline or Online when you book. We'll confirm everything over WhatsApp.</p>
-      <a href="index.html" class="btn btn-primary">Book This Session</a>
+      <a href="index.html?service=animal-telepathy#book" class="btn btn-primary">Book This Session</a>
     </div>
   </div>
 </section>
@@ -588,6 +590,8 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
 </footer>
 
 <script>
+
+
 (function(){
   var menuBtn = document.getElementById('menuBtn');
   var navLinks = document.getElementById('navLinks');
@@ -609,8 +613,85 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
       });
     });
   }
+
+    // IMPORTANT: Only target BUTTONS, not anchor navigation links
+document.querySelectorAll('.open-modal').forEach(btn => {
+ btn.addEventListener('click', function(){
+  console.log("Book clicked");
+  document.getElementById('overlay').classList.add('open');
+  console.log("Fading in sound");
+   fadeInSound();
+ });
+});
 })();
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- // for dialog -->
+<div class="overlay" id="overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-stripe"></div>
+  <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+  <div class="modal-inner">
+  <div id="formView">
+  <h2 id="modal-title">Book a Session</h2>
+  <p class="sub">Fill in the form and I'll reach out on WhatsApp to confirm everything.</p>
+  <form id="bookForm" method="POST">
+  <div class="fg">
+  <label>Service *</label>
+  <select name="service" required id="serviceSelect">
+  <option value="">Please select a service…</option>
+  <option>Animal Telepathy — Offline (₹1,500 per pet)</option>
+  <option>Animal Telepathy — Online (₹3,500 for 2-3 pets)</option>
+  <option>Aura Scan for Animals (₹1,000)</option>
+  <option>Chakra Scan & Healing (₹1,000)</option>
+  <option>White Light Healing (₹1,000)</option>
+  <option>Landscape Communication (₹1,000)</option>
+  <option>Deceased Animal Communication (₹1,000)</option>
+  </select>
+  </div>
+  <div class="frow">
+  <div class="fg">
+  <label>Your Name *</label>
+  <input type="text" name="name" required placeholder="Full name">
+  </div>
+  <div class="fg">
+  <label>Mobile *</label>
+  <input type="tel" name="phone" required placeholder="10-digit number" maxlength="10">
+  </div>
+  </div>
+  <div class="fg">
+  <label>Email *</label>
+  <input type="email" name="email" required placeholder="you@example.com">
+  </div>
+  <div class="fg">
+  <label>Pet's Name & Questions</label>
+  <textarea name="message" placeholder="Your pet's name, age, and any questions you have…"></textarea>
+  </div>
+  <button type="submit" class="submit-btn">Send to Bridge of Whispers →</button>
+  </form>
+  </div>
+  <div class="ty hidden" id="thankView">
+  <div class="ty-icon">🌿</div>
+  <h3>Thank You, Dear Soul</h3>
+  <p>Your message has reached me. I will be in touch on WhatsApp very soon to confirm your session details.</p>
+  <p style="font-size:13px;margin-top:6px">Sessions are delivered within 24–48 hours (Offline) or scheduled at a mutually convenient time (Online). Trust the process and allow it to unfold with patience.</p>
+  <button class="btn btn-primary" style="margin-top:24px" id="closeThank">Close</button>
+  </div>
+  </div>
+  </div>
+ </div>
 </body>
 </html>
 
