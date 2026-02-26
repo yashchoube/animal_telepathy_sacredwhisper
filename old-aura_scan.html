@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura Scan for Animals · Bridge of Whispers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── GLOBAL RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:#FDFAF5;color:#2C2317;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;outline:none}
+ul{list-style:none}
+
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;height:72px;
+  background:rgba(253,250,245,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #EDE4D6;
+  box-shadow:0 2px 20px rgba(44,35,23,0.08);
+}
+.nav-logo{display:flex;align-items:center;gap:14px;transition:opacity .2s}
+.nav-logo:hover{opacity:.9}
+.nav-logo img{height:56px;width:auto;min-width:56px;object-fit:contain;object-position:left center;flex-shrink:0}
+.nav-logo .logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;letter-spacing:1.2px;color:#2C2317;line-height:1.2}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-links a{
+  padding:8px 16px;font-size:13px;font-weight:500;letter-spacing:.3px;
+  color:#6B5744;border-radius:6px;transition:background .2s,color .2s;
+}
+.nav-links a:hover{background:#F0EBE2;color:#2C2317}
+.nav-cta{
+  padding:10px 24px !important;
+  background:#5C7A5C !important;color:#fff !important;
+  border-radius:50px !important;font-weight:600 !important;
+  transition:background .2s,transform .2s,box-shadow .2s !important;
+}
+.nav-cta:hover{background:#4A6A4A !important;transform:translateY(-1px) !important;box-shadow:0 6px 20px rgba(92,122,92,.35) !important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:#2C2317;border-radius:2px;transition:.3s}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 30px;font-size:14px;font-weight:600;
+  border-radius:50px;border:2px solid transparent;
+  transition:all .25s;cursor:pointer;letter-spacing:.2px;
+}
+.btn-primary{background:#5C7A5C;color:#fff;border-color:#5C7A5C}
+.btn-primary:hover{background:#4A6A4A;border-color:#4A6A4A;transform:translateY(-2px);box-shadow:0 8px 24px rgba(92,122,92,.35)}
+.btn-secondary{background:transparent;color:#5C7A5C;border-color:#5C7A5C}
+.btn-secondary:hover{background:#5C7A5C;color:#fff;transform:translateY(-2px)}
+
+/* Hero: starts below fixed header, image fully visible, no crop, no stretch on scroll */
+/* ─── HERO PERFECT FIT ─── */
+.page-hero{
+  margin-top:72px;
+  position:relative;
+  height:520px; /* same nice height you liked */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:transparent; /* remove cream fill */
+}
+
+.page-hero img{
+  height:125%;
+  width:auto;
+  max-width:100%;
+  object-fit:contain;
+  display:block;
+  margin:0 auto;
+}
+
+.page-hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(44,35,23,.65) 0%,
+    rgba(44,35,23,.2) 50%,
+    transparent 100%
+  );
+  pointer-events:none;
+}
+
+.page-hero-inner{
+  position:absolute;
+  bottom:50px;
+  left:50%;
+  transform:translateX(-50%);
+  max-width:900px;
+  width:100%;
+  padding:0 24px;
+  text-align:center;
+  z-index:2;
+}
+
+.page-hero .btn{margin:4px 6px}
+.page-hero .btn-secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.8)}
+.page-hero .btn-secondary:hover{background:rgba(255,255,255,.15);color:#fff;border-color:#fff}
+.page-hero .btn-primary{background:#fff;color:#5C7A5C;border-color:#fff}
+.page-hero .btn-primary:hover{background:rgba(255,255,255,.92);color:#4A6A4A;border-color:#fff}
+
+/* ═══ Aura Scan content sections (designed, not plain text) ═══ */
+.service-section{
+  padding:72px 24px;
+  background:#FDFAF5;
+}
+.service-section .container{
+  max-width:900px;margin:0 auto;
+}
+.service-section h2{
+  font-family:'Playfair Display',serif;font-size:clamp(26px,2.8vw,36px);
+  font-weight:500;color:#2C2317;margin-bottom:28px;
+  position:relative;padding-bottom:16px;
+}
+.service-section h2::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:48px;height:3px;background:linear-gradient(90deg,#5C7A5C,#C97B6E);
+  border-radius:2px;
+}
+.service-section p{
+  font-size:17px;line-height:1.85;color:#6B5744;margin-bottom:20px;
+}
+.service-section p:last-of-type{margin-bottom:0}
+.service-section.alt-bg{background:#F5EFE6}
+.feature-list{
+  list-style:none;padding:0;margin:28px 0 0;
+  display:grid;gap:12px;
+}
+.feature-list li{
+  font-size:16px;line-height:1.75;color:#6B5744;
+  padding:18px 20px 18px 52px;position:relative;
+  background:#fff;border-radius:14px;
+  border:1px solid #EDE4D6;
+  transition:box-shadow .2s,border-color .2s;
+}
+.feature-list li:hover{
+  box-shadow:0 8px 28px rgba(44,35,23,.06);
+  border-color:#D4E4D4;
+}
+.feature-list li::before{
+  content:'✓';position:absolute;left:20px;top:18px;
+  width:24px;height:24px;border-radius:50%;
+  background:#EDF2ED;color:#5C7A5C;
+  font-weight:700;font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+}
+.pricing-section{
+  padding:72px 24px;background:#FDFAF5;
+}
+.pricing-section .container{max-width:900px;margin:0 auto}
+.pricing-section h2{
+  font-family:'Playfair Display',serif;font-size:clamp(26px,2.8vw,36px);
+  font-weight:500;color:#2C2317;margin-bottom:32px;
+  text-align:center;
+}
+.pricing-grid{display:flex;justify-content:center;flex-wrap:wrap;gap:24px}
+.pricing-grid.single{max-width:420px;margin:0 auto}
+.pricing-card{
+  background:#fff;border-radius:24px;padding:40px 36px;
+  border:1px solid #EDE4D6;
+  text-align:center;
+  transition:transform .25s,box-shadow .25s;
+  flex:1;min-width:280px;
+}
+.pricing-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 50px rgba(44,35,23,.1);
+}
+.pricing-card.highlight{border-color:#5C7A5C;box-shadow:0 12px 40px rgba(92,122,92,.15)}
+.pricing-card h3{
+  font-family:'Playfair Display',serif;font-size:24px;
+  font-weight:500;color:#2C2317;margin-bottom:16px;
+}
+.pricing-card .price{
+  font-family:'Playfair Display',serif;font-size:38px;
+  font-weight:500;color:#5C7A5C;margin-bottom:6px;
+}
+.pricing-card .price-note{
+  font-size:14px;color:#9B8A7A;margin-bottom:20px;
+}
+.pricing-card .short-desc{
+  font-size:15px;line-height:1.7;color:#6B5744;margin-bottom:28px;
+}
+.pricing-card .btn{width:100%;justify-content:center}
+.service-wrap-cta{max-width:900px;margin:0 auto;padding:0 24px}
+
+.service-content{background:#FDFAF5;padding:0}
+.service-wrap{max-width:900px;margin:0 auto;padding:0 24px}
+.content-block{padding:64px 0;border-bottom:1px solid #EDE4D6}
+.content-block:last-of-type{border-bottom:none}
+.content-block h2{font-family:'Playfair Display',serif;font-size:clamp(26px,2.8vw,34px);font-weight:500;color:#2C2317;margin-bottom:24px}
+.content-block p{font-size:16px;line-height:1.85;color:#6B5744;margin-bottom:16px}
+.content-block p:last-child{margin-bottom:0}
+.content-block ul{margin:20px 0 0;padding:0;list-style:none}
+.content-block ul li{font-size:16px;line-height:1.8;color:#6B5744;padding:10px 0 10px 28px;position:relative;border-bottom:1px solid #EDE4D6}
+.content-block ul li:last-child{border-bottom:none}
+.content-block ul li::before{content:'✓';position:absolute;left:0;color:#5C7A5C;font-weight:700;font-size:16px}
+.type-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.type-card{background:#fff;border-radius:20px;padding:28px 24px;border:1px solid #EDE4D6;transition:box-shadow .25s}
+.type-card:hover{box-shadow:0 12px 40px rgba(44,35,23,.08)}
+.type-card h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:500;color:#2C2317;margin-bottom:6px}
+.type-card .type-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#5C7A5C;margin-bottom:10px}
+.type-card .type-price{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;color:#5C7A5C;margin-bottom:14px}
+.type-card .type-price small{font-size:13px;font-weight:400;color:#9B8A7A;font-family:'Inter',sans-serif}
+.type-card p{font-size:15px;line-height:1.75;color:#6B5744;margin-bottom:16px}
+.type-card ul{margin:0;padding:0;list-style:none}
+.type-card ul li{font-size:14px;line-height:1.7;color:#6B5744;padding:8px 0 8px 22px;position:relative;border-bottom:1px solid #F5EFE6}
+.type-card ul li:last-child{border-bottom:none}
+.type-card ul li::before{content:'✓';position:absolute;left:0;color:#5C7A5C;font-weight:700;font-size:14px}
+
+.cta-box{
+  background:linear-gradient(135deg, #3D5C40 0%, #5C7A5C 100%);
+  border-radius:24px;padding:48px 40px;text-align:center;margin:64px 0 56px;
+}
+.cta-box h3{
+  font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,32px);
+  font-weight:400;color:#fff;margin-bottom:12px;
+}
+.cta-box p{font-size:16px;color:rgba(255,255,255,.85);margin-bottom:24px}
+.cta-box .btn-primary{background:#fff;color:#5C7A5C;border-color:#fff}
+.cta-box .btn-primary:hover{background:rgba(255,255,255,.9)}
+
+footer{background:#2C2317;padding:48px 60px;text-align:center}
+footer p{font-size:12px;color:rgba(255,255,255,.3)}
+
+@media(max-width:900px){
+  .nav{padding:0 24px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .page-hero{min-height:38vh;height:auto;padding:24px 20px 36px}
+  .page-hero img{height:auto;max-height:50vh}
+  .service-section,.pricing-section{padding:48px 20px}
+  .service-wrap-cta{padding:0 20px}
+  .type-cards{grid-template-columns:1fr}
+  .content-block{padding:48px 0}
+  .service-wrap{padding:0 20px}
+  footer{padding:36px 24px}
+}
+.nav-links.mobile-open{
+  display:flex;flex-direction:column;position:fixed;
+  top:72px;left:0;right:0;bottom:0;
+  background:rgba(253,250,245,0.97);backdrop-filter:blur(16px);
+  align-items:center;justify-content:center;gap:28px;z-index:999;
+}
+.nav-links.mobile-open a{font-size:20px;padding:10px 20px}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/logo.png" alt="Bridge of Whispers logo">
+    <span class="logo-text">Sacred Whispers</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#sessions">All Sessions</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html?service=aura-scan#book" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="hamburger" id="menuBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="page-hero" aria-label="Aura Scan for Animals">
+
+  <img src="assets/imageaurascanheader.png" 
+       alt="Aura Scan for Animals — explore your companion's energy field">
+
+  <!-- <div class="page-hero-inner">
+    <h1>Aura Scan</h1>
+    <p class="page-hero-desc">
+      Hear what your animal companions are thinking and feeling. Choose the format that suits you best — a detailed written report (Offline) or a live conversation (Online).
+    </p>
+    <a href="index.html#sessions" class="btn btn-secondary">← Back to All Offerings</a>
+    <a href="index.html?service=aura-scan#book" class="btn btn-primary">Book This Session</a>
+  </div> -->
+
+</section>
+
+<!-- SERVICE CONTENT -->
+<section class="service-section">
+
+  <div class="container">
+
+    <h2>What is an Aura Scan?</h2>
+
+    <p>
+      An Aura Scan is a gentle, intuitive way to explore your animal's emotional and energetic well-being. 
+      Through this compassionate process, I tune into your companion’s energy field to sense areas of stress, imbalance, or sensitivity.
+    </p>
+
+    <p>
+      Every living being radiates energy — and your animal companion is no exception. 
+      Their aura, the subtle energy field surrounding their body, reflects their emotional state, physical health, and spiritual vitality.
+    </p>
+
+    <p>
+      When this field is balanced, your pet feels calm, grounded, and at peace. 
+      But when imbalances occur due to stress, illness, trauma, or environmental changes, 
+      they may manifest as behavioral shifts, anxiety, or even physical discomfort.
+    </p>
+
+    <p>
+      Through an Aura Scan, I gently tune into your animal’s energy and identify areas that may need attention, support, or healing. 
+      This process helps you understand what your companion is experiencing on a deeper level — beyond what behavior alone can express.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- BENEFITS SECTION -->
+<section class="service-section alt-bg">
+
+  <div class="container">
+
+    <h2>Benefits of an Aura Scan</h2>
+
+    <ul class="feature-list">
+      <li>Identify emotional stress or anxiety your pet may be holding</li>
+      <li>Detect energetic imbalances before they manifest physically</li>
+      <li>Gain clarity on behavioral changes or unexplained fears</li>
+      <li>Support your animal's overall emotional and spiritual wellness</li>
+      <li>Deepen your understanding of your companion’s inner world</li>
+    </ul>
+
+  </div>
+
+</section>
+
+
+<!-- WHAT TO EXPECT -->
+<section class="service-section">
+
+  <div class="container">
+
+    <h2>What to Expect</h2>
+
+    <ul class="feature-list">
+      <li>A detailed written report describing your animal's aura field</li>
+      <li>Insights into emotional patterns, stress areas, and energetic health</li>
+      <li>Recommendations for supporting balance and well-being</li>
+      <li>Up to 3 follow-up healing sessions included in the price</li>
+    </ul>
+
+  </div>
+
+</section>
+
+
+<!-- PRICING SECTION -->
+<section class="pricing-section">
+
+  <div class="container">
+
+    <h2>Investment</h2>
+
+    <div class="pricing-grid single">
+
+      <div class="pricing-card highlight">
+        <h3>Aura Scan Session</h3>
+        <div class="price">₹1,000</div>
+        <p class="price-note">for up to 3 healing sessions</p>
+        <p class="short-desc">
+          Explore your animal's emotional and energetic well-being through their aura field.
+        </p>
+        <a href="index.html?service=aura-scan#book" class="btn btn-primary">Book This Session</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+    <div class="service-wrap-cta">
+      <div class="cta-box">
+        <h3>Ready to Begin?</h3>
+        <p>Book your session and let's explore your companion's aura together.</p>
+        <a href="index.html?service=aura-scan#book" class="btn btn-primary">Book This Session</a>
+      </div>
+    </div>
+
+<footer>
+  <p>© 2026 The Bridge of Whispers · All rights reserved</p>
+</footer>
+
+<script>
+(function(){
+  var menuBtn = document.getElementById('menuBtn');
+  var navLinks = document.getElementById('navLinks');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('mobile-open');
+      document.body.style.overflow = open ? 'hidden' : '';
+      menuBtn.children[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)' : '';
+      menuBtn.children[1].style.opacity = open ? '0' : '1';
+      menuBtn.children[2].style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        navLinks.classList.remove('mobile-open');
+        document.body.style.overflow = '';
+        if (menuBtn.children[0]) menuBtn.children[0].style.transform = '';
+        if (menuBtn.children[1]) menuBtn.children[1].style.opacity = '1';
+        if (menuBtn.children[2]) menuBtn.children[2].style.transform = '';
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

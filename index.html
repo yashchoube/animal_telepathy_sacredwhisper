@@ -24,7 +24,7 @@ ul{list-style:none}
 .nav{
  position:fixed;top:0;left:0;right:0;z-index:1000;
  display:flex;align-items:center;justify-content:space-between;
- padding:0 60px;height:72px;
+ padding:0 60px 0 20px;height:82px;
  background:rgba(253,250,245,0.96);
  backdrop-filter:blur(12px);
  border-bottom:1px solid #EDE4D6;
@@ -32,13 +32,24 @@ ul{list-style:none}
  font-family:'Playfair Display', serif;
 }
 .nav.scrolled{box-shadow:0 2px 20px rgba(44,35,23,0.08)}
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo img{height:44px;width:auto}
-.nav-logo span{font-family:'Playfair Display',serif;font-size:17px;color:#2C2317;font-weight:500}
+.nav-logo{
+  display:flex;align-items:center;gap:14px;
+  transition:opacity .2s;
+}
+.nav-logo:hover{opacity:.9}
+.nav-logo img{
+  height:76px;width:auto;min-width:56px;
+  object-fit:contain;object-position:left center;
+  flex-shrink:0;
+}
+.nav-logo .logo-text{
+  font-family:'Playfair Display',serif;font-size:20px;font-weight:500;
+  letter-spacing:1.2px;color:#2C2317;line-height:1.2;
+}
 .nav-links{display:flex;align-items:center;gap:8px}
 .nav-links a{
- padding:8px 16px;font-family: 'Playfair Display', serif;font-size:15px;font-weight:500;letter-spacing:.3px;
- color:#6B5744;border-radius:6px;transition:background .2s,color .2s;
+ padding:8px 16px;font-family: 'Playfair Display', serif;font-size:18px;font-weight:500;letter-spacing:.3px;
+ color:black;border-radius:6px;transition:background .2s,color .2s;
 }
 .nav-links a:hover{background:#F0EBE2;color:#2C2317}
 .nav-cta{
@@ -403,8 +414,14 @@ ul{list-style:none}
 footer{background:#2C2317;padding:64px 60px 32px}
 .footer-wrap{max-width:1200px;margin:0 auto}
 .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
-.footer-brand img{height:44px;margin-bottom:16px;filter:brightness(1.4)}
-.footer-brand p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.75;max-width:240px}
+.footer-brand img{
+  height:72px;width:auto;margin-bottom:20px;
+  object-fit:contain;object-position:left top;
+  filter:brightness(1.15);opacity:.95;
+  transition:opacity .2s;
+}
+.footer-brand:hover img{opacity:1}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.75;max-width:260px}
 .footer-col h5{
  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
  color:rgba(255,255,255,.35);margin-bottom:16px;
@@ -579,6 +596,8 @@ footer{background:#2C2317;padding:64px 60px 32px}
  .footer-top{grid-template-columns:1fr 1fr}
 }
 @media(max-width:900px){
+ .nav-logo img{height:48px;min-width:48px}
+ .nav-logo .logo-text{font-size:18px;letter-spacing:.6px}
  .hero{padding-top:100px;padding-left:32px;padding-right:32px}
  .hero-text{padding:48px 0 24px;max-width:560px;margin:0 auto}
  .hero-desc{margin-left:auto;margin-right:auto}
@@ -601,6 +620,9 @@ footer{background:#2C2317;padding:64px 60px 32px}
  footer{padding:52px 32px 28px}
 }
 @media(max-width:640px){
+ .nav-logo img{height:44px;min-width:44px}
+ .nav-logo .logo-text{font-size:17px}
+ .footer-brand img{height:56px}
  .cards-grid{grid-template-columns:1fr}
  .offerings-grid{grid-template-columns:1fr}
  .testi-grid{grid-template-columns:1fr}
@@ -828,10 +850,9 @@ footer{background:#2C2317;padding:64px 60px 32px}
 <div id="prog"></div>
 
 <nav class="nav" id="nav">
- <a href="index.html" class="nav-logo">
- <img src="assets/logo.png" alt="Bridge of Whispers logo">
- <span>Sacred Whispers</span>
- </a>
+<a href="index.html" class="nav-logo">
+ <img src="assets/logo6.png" alt="Sacred Whispers — Animal Telepathic Communication">
+</a>
  <ul class="nav-links" id="navLinks">
  <li><a href="#what">What Is This</a></li>
  <li><a href="#why">Why It Matters</a></li>
@@ -1038,7 +1059,7 @@ footer{background:#2C2317;padding:64px 60px 32px}
  <div class="footer-wrap">
  <div class="footer-top">
  <div class="footer-brand">
- <img src="assets/logo.png" alt="Sacred Whispers">
+ <img src="assets/logo6.png" alt="Sacred Whispers">
  <p>Bridging hearts across species through the sacred art of interspecies telepathic communication. Serving souls across India and worldwide.</p>
  </div>
  <div class="footer-col">

@@ -28,9 +28,10 @@ ul{list-style:none}
   border-bottom:1px solid #EDE4D6;
   box-shadow:0 2px 20px rgba(44,35,23,0.08);
 }
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo img{height:44px;width:auto}
-.nav-logo span{font-family:'Playfair Display',serif;font-size:17px;color:#2C2317;font-weight:500}
+.nav-logo{display:flex;align-items:center;gap:14px;transition:opacity .2s}
+.nav-logo:hover{opacity:.9}
+.nav-logo img{height:56px;width:auto;min-width:56px;object-fit:contain;object-position:left center;flex-shrink:0}
+.nav-logo .logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;letter-spacing:1.2px;color:#2C2317;line-height:1.2}
 .nav-links{display:flex;align-items:center;gap:8px}
 .nav-links a{
   padding:8px 16px;font-size:13px;font-weight:500;letter-spacing:.3px;
@@ -153,8 +154,8 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
 ══ NAV ══
 <nav class="nav" id="nav">
   <a href="index.html" class="nav-logo">
-    <img src="assets/image12.png" alt="Bridge of Whispers logo">
-    <span>Bridge of Whispers</span>
+    <img src="assets/logo.png" alt="Sacred Whispers — Animal Telepathic Communication">
+    <span class="logo-text">Sacred Whispers</span>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
@@ -333,9 +334,10 @@ ul{list-style:none}
   border-bottom:1px solid #EDE4D6;
   box-shadow:0 2px 20px rgba(44,35,23,0.08);
 }
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo img{height:44px;width:auto}
-.nav-logo span{font-family:'Playfair Display',serif;font-size:17px;color:#2C2317;font-weight:500}
+.nav-logo{display:flex;align-items:center;gap:14px;transition:opacity .2s}
+.nav-logo:hover{opacity:.9}
+.nav-logo img{height:56px;width:auto;min-width:56px;object-fit:contain;object-position:left center;flex-shrink:0}
+.nav-logo .logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;letter-spacing:1.2px;color:#2C2317;line-height:1.2}
 .nav-links{display:flex;align-items:center;gap:8px}
 .nav-links a{
   padding:8px 16px;font-size:13px;font-weight:500;letter-spacing:.3px;
@@ -500,8 +502,8 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
 
 <nav class="nav" id="nav">
   <a href="index.html" class="nav-logo">
-    <img src="assets/image12.png" alt="Bridge of Whispers logo">
-    <span>Bridge of Whispers</span>
+    <img src="assets/logo.png" alt="Sacred Whispers — Animal Telepathic Communication">
+    <span class="logo-text">Sacred Whispers</span>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
@@ -625,20 +627,96 @@ ul{list-style:none}
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:1000;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 60px;height:72px;
+  padding:0 60px 0 20px;height:82px;
   background:rgba(253,250,245,0.96);
   backdrop-filter:blur(12px);
   border-bottom:1px solid #EDE4D6;
   box-shadow:0 2px 20px rgba(44,35,23,0.08);
 }
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo img{height:44px;width:auto}
-.nav-logo span{font-family:'Playfair Display',serif;font-size:17px;color:#2C2317;font-weight:500}
+/* .nav-logo{display:flex;align-items:center;gap:14px;transition:opacity .2s}
+.nav-logo:hover{opacity:.9} */
+/* .nav-logo img{height:56px;width:auto;min-width:56px;object-fit:contain;object-position:left center;flex-shrink:0} */
+
+ /* .nav-logo img {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+  flex-shrink: 0;
+  mix-blend-mode: multiply; 
+  margin-left: -8px; 
+} 
+
+
+
+.nav-logo .logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;letter-spacing:1.2px;color:#2C2317;line-height:1.2} */
+
+
+
+
+
+
+
+
+
+/* ─── PROFESSIONAL HEADER LOGO ─── */
+.nav-logo {
+  display: flex;
+  align-items: center; /* Vertical centering */
+  gap: 12px;           /* Perfect space between icon and text */
+  text-decoration: none;
+}
+
+.logo-svg {
+  width: 50px;         /* Larger, clearer icon */
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.logo-text-wrapper {
+  display: flex;
+  flex-direction: row; /* Horizontal layout as requested */
+  gap: 8px;
+  align-items: baseline;
+}
+
+.logo-main-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #2C2317; /* Your brand dark brown */
+}
+
+.logo-sub-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #8C7E6A; /* Subtle gold/taupe for the second word */
+}
+
+/* On Mobile: Scale down slightly to fit */
+@media (max-width: 768px) {
+  .logo-svg { width: 40px; height: 40px; }
+  .logo-main-text, .logo-sub-text { font-size: 16px; }
+}
+
+
+
+
+
 .nav-links{display:flex;align-items:center;gap:8px}
-.nav-links a{
+/* .nav-links a{
   padding:8px 16px;font-size:13px;font-weight:500;letter-spacing:.3px;
   color:#6B5744;border-radius:6px;transition:background .2s,color .2s;
+} */
+
+.nav-links a{
+  padding:8px 16px;font-size:15px;font-weight:500;letter-spacing:.3px;
+  color:black;border-radius:6px;transition:background .2s,color .2s;
 }
+
 .nav-links a:hover{background:#F0EBE2;color:#2C2317}
 .nav-cta{
   padding:10px 24px !important;
@@ -863,10 +941,51 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
 <body>
 
 <nav class="nav" id="nav">
+  <!-- <a href="index.html" class="nav-logo">
+    <img src="assets/logo.png" alt="Bridge of Whispers logo">
+  </a> -->
+
+
   <a href="index.html" class="nav-logo">
-    <img src="assets/image12.png" alt="Bridge of Whispers logo">
-    <span>Bridge of Whispers</span>
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="none" stroke="#5C7A5C" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.3"/>
+      <path d="M45,70 C30,70 20,55 20,40 C20,25 35,20 45,35 M55,70 C70,70 80,55 80,40 C80,25 65,20 55,35" fill="none" stroke="#5C7A5C" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M48,38 Q50,35 52,38 L50,42 Z" fill="#C97B6E"/> <path d="M35,25 Q40,15 45,25" fill="none" stroke="#5C7A5C" stroke-width="2"/> <path d="M65,25 Q60,15 55,25" fill="none" stroke="#5C7A5C" stroke-width="2"/> </svg>
+  
+    <div class="logo-text-wrapper">
+      <span class="logo-main-text">SACRED</span>
+      <span class="logo-sub-text">WHISPERS</span>
+    </div>
   </a>
+
+
+
+
+
+  <!-- <a href="index.html" class="nav-logo">
+    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <defs>
+        <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#5C7A5C" />
+          <stop offset="100%" stop-color="#3D5C40" />
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#EDE4D6" stroke-width="2"/>
+      <path d="M30 65 Q50 20 70 65" fill="none" stroke="url(#brandGrad)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M20 50 Q50 85 80 50" fill="none" stroke="#5C7A5C" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+      <circle cx="50" cy="42" r="5" fill="#C97B6E"/>
+      <path d="M25 50 Q15 45 20 30 Q35 35 25 50" fill="#5C7A5C" opacity="0.8"/>
+      <path d="M75 50 Q85 45 80 30 Q65 35 75 50" fill="#5C7A5C" opacity="0.8"/>
+    </svg>
+    
+    <span class="logo-text">Sacred Whispers</span>
+  </a> -->
+
+
+
+
+
+
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#sessions">All Sessions</a></li>

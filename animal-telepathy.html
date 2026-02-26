@@ -25,9 +25,10 @@ ul{list-style:none}
   border-bottom:1px solid #EDE4D6;
   box-shadow:0 2px 20px rgba(44,35,23,0.08);
 }
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo img{height:44px;width:auto}
-.nav-logo span{font-family:'Playfair Display',serif;font-size:17px;color:#2C2317;font-weight:500}
+.nav-logo{display:flex;align-items:center;gap:14px;transition:opacity .2s}
+.nav-logo:hover{opacity:.9}
+.nav-logo img{height:56px;width:auto;min-width:56px;object-fit:contain;object-position:left center;flex-shrink:0}
+.nav-logo .logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;letter-spacing:1.2px;color:#2C2317;line-height:1.2}
 .nav-links{display:flex;align-items:center;gap:8px}
 .nav-links a{
   padding:8px 16px;font-size:13px;font-weight:500;letter-spacing:.3px;
@@ -192,8 +193,8 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
 
 <nav class="nav" id="nav">
   <a href="index.html" class="nav-logo">
-    <img src="assets/image12.png" alt="Bridge of Whispers logo">
-    <span>Bridge of Whispers</span>
+    <img src="assets/logo.png" alt="Sacred Whispers — Animal Telepathic Communication">
+    <span class="logo-text">Sacred Whispers</span>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
@@ -314,7 +315,7 @@ a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;outline:none}
 ul{list-style:none}
 
-.nav{
+/* .nav{
   position:fixed;top:0;left:0;right:0;z-index:1000;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 60px;height:72px;
@@ -322,14 +323,33 @@ ul{list-style:none}
   backdrop-filter:blur(12px);
   border-bottom:1px solid #EDE4D6;
   box-shadow:0 2px 20px rgba(44,35,23,0.08);
+} */
+
+.nav{
+ position:fixed;top:0;left:0;right:0;z-index:1000;
+ display:flex;align-items:center;justify-content:space-between;
+ padding:0 60px 0 20px;height:82px;
+ background:rgba(253,250,245,0.96);
+ backdrop-filter:blur(12px);
+ border-bottom:1px solid #EDE4D6;
+ transition:box-shadow .3s;
+ font-family:'Playfair Display', serif;
 }
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo img{height:44px;width:auto}
-.nav-logo span{font-family:'Playfair Display',serif;font-size:17px;color:#2C2317;font-weight:500}
+
+.nav-logo{display:flex;align-items:center;gap:14px;transition:opacity .2s}
+.nav-logo:hover{opacity:.9}
+/* .nav-logo img{height:56px;width:auto;min-width:56px;object-fit:contain;object-position:left center;flex-shrink:0} */
+
+.nav-logo img{
+  height:76px;width:auto;min-width:56px;
+  object-fit:contain;object-position:left center;
+  flex-shrink:0;
+}
+.nav-logo .logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;letter-spacing:1.2px;color:#2C2317;line-height:1.2}
 .nav-links{display:flex;align-items:center;gap:8px}
 .nav-links a{
-  padding:8px 16px;font-size:13px;font-weight:500;letter-spacing:.3px;
-  color:#6B5744;border-radius:6px;transition:background .2s,color .2s;
+  padding:8px 16px;font-size:15px;font-weight:500;letter-spacing:.3px;
+  color:black;border-radius:6px;transition:background .2s,color .2s;
 }
 .nav-links a:hover{background:#F0EBE2;color:#2C2317}
 .nav-cta{
@@ -506,8 +526,8 @@ footer p{font-size:12px;color:rgba(255,255,255,.3)}
 
 <nav class="nav" id="nav">
   <a href="index.html" class="nav-logo">
-    <img src="assets/image12.png" alt="Bridge of Whispers logo">
-    <span>Bridge of Whispers</span>
+    <img src="assets/logo6.png" alt="Sacred Whispers — Animal Telepathic Communication">
+    <!-- <span class="logo-text">Sacred Whispers</span> -->
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
@@ -639,7 +659,7 @@ document.querySelectorAll('.open-modal').forEach(btn => {
 
 
 <!-- // for dialog -->
-<div class="overlay" id="overlay">
+<!-- <div class="overlay" id="overlay">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="modal-stripe"></div>
   <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
@@ -691,7 +711,7 @@ document.querySelectorAll('.open-modal').forEach(btn => {
   </div>
   </div>
   </div>
- </div>
+ </div>-->
 </body>
-</html>
+</html> 
 
