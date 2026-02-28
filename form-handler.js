@@ -30,8 +30,8 @@ const FORM_CONFIG = {
   autoResponse: {
     enabled: true,
     fromEmail: 'Prasha.singh01@gmail.com', // Change to your domain
-    fromName: 'Bridge of Whispers',
-    subject: 'Your Session Booking with Bridge of Whispers — Confirmation'
+    fromName: 'Sacred Whispers',
+    subject: 'Your Session Booking with Sacred Whispers — Confirmation'
   }
 };
 
@@ -152,7 +152,7 @@ const getCustomerEmailTemplate = (name, service) => {
       formData.append('subject', `New Booking: ${serviceName} - ${customerName}`);
       
       // Add from name for better email display
-      formData.append('from_name', 'Bridge of Whispers Website');
+      formData.append('from_name', 'Sacred Whispers Website');
       
       // ═══════════════════════════════════════════════════════
       // AUTO-RESPONSE CONFIGURATION (Customer Confirmation)
